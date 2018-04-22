@@ -7,3 +7,8 @@ def home(request):
     context = {}
     print(request.profile)
     return render(request, 'main/home.html', context)
+
+
+def app(request):
+    client_pk = '1'
+    return render(request, 'main/app/app.html', locals())

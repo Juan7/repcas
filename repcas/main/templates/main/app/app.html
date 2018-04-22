@@ -1,0 +1,52 @@
+{% extends "main/app/layout.html" %}
+{% load static %}
+
+{% block css %}
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+<link href="{% static "main/app/css/base.css" %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block content %}
+	<div id="app">
+		{% include "main/app/navbar.html" %}
+    <div class="container-fluid p-0">
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+      	<transition>
+				  <keep-alive>
+				  	<router-view></router-view>
+				  </keep-alive>
+				</transition>
+      </section>
+    </div>
+	</div>
+{% endblock %}
+
+{% block js %}
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>
+	<script src="{% static "main/app/js/products.js" %}"></script>
+	<script src="{% static "main/app/js/invoices.js" %}"></script>
+	<script src="{% static "main/app/js/quotations.js" %}"></script>
+	<script src="{% static "main/app/js/app.js" %}"></script>
+{% endblock %}
+
+{% block x_templates %}
+<script type="text/x-template" id="products-view">
+	{% include "main/app/products.html" %}
+</script>
+<script type="text/x-template" id="invoices-view">
+	{% include "main/app/invoices.html" %}
+</script>
+<script type="text/x-template" id="quotations-view">
+	{% include "main/app/quotations.html" %}
+</script>
+{% endblock %}
