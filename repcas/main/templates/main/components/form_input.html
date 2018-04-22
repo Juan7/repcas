@@ -1,0 +1,6 @@
+
+
+  {% for error in field.errors %}
+    <span class="input-error">{{ error }}</span>
+  {% endfor %}
+  {{ field|add_placeholder }}

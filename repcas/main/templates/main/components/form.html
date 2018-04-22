@@ -1,0 +1,20 @@
+
+{% load i18n %}
+
+  <form action="{% if action %}?next={{ action }} {% endif %}" method="post">
+    {% csrf_token %}
+
+     {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <div class="input-error">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% for field in form %}
+      {% include 'main/components/form_input.html' with field=field %}
+    {% endfor %}
+
+    <div class="form-button">
+      <input type="submit" value="{% trans button_name %}"/>
+    </div>
+  </form>

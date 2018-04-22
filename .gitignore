@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Virtual environment
+.env
+.venv/
+
+# Unit test / coverage reports
+coverage_html_report/
+htmlcov/
+
+# Coverage
+.coverage
+
+# Sass
+.sass-cache
+
+# DS_Store
+.DS_Store
+
+# Local databases
+*.sqlite3
+
+repcas/static
+
+## Brunch
+
+# Sass files
+*.css.map
+
+# Js files
+*.js.map
+
+# Temporary project files
+repcas/tmp
+
+# NPM packages folder.
+node_modules/
+
+# Brunch folder for temporary files.
+tmp/
+
+# Brunch bundles
+repcas/main/static/core/css/app.css
+repcas/main/static/core/js/app.js
+repcas/main/static/core/js/vendor.js
+
+# Brunch map files
+repcas/main/static/core/js/*.map
+
+# Package lock
+package-lock.json

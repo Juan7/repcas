@@ -1,0 +1,72 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Repcas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- <link rel="shortcut icon" href="{% static 'main/img/favicon.ico' %}"> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <meta property="og:site_name" content="Report"/>
+  </head>
+  <body>
+  <nav>
+    <a class="logo" href="/"><i class="fa fa-pie-chart" aria-hidden="true"></i> Repcas</a>
+    <ul class="right">
+      {% if user.is_authenticated %}
+      <li class="expander">
+        <a class="expander-button" id="expander-button-2" href="javascript:void(0)">
+          {% if user.profile.avatar %}
+          <span class="avatar" style="background:url('{{ user.profile.avatar.url }}');"></span> {{ user.username }}
+          {% else %}
+          <span class="avatar" style="background:url('{% static 'main/img/user.jpg' %}');"></span> {{ user.username }}
+          {% endif %}
+        </a>
+        <ul class="expander-content" id="expander-content-2">
+          {% comment %}
+          <li><a href="{% url 'accounts:profile' %}">Perfil</a></li>
+          <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+          {% endcomment %}
+        </ul>
+      </li>
+      {% else %}
+
+      <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+
+      {% endif %}
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+
+      {% include "main/components/message.html" %}
+    </div>
+  </main>
+
+  <footer>
+    &copy; {% now "Y" %} Repcas
+  </footer>
+
+  </body>
+
+  <script src="{% static 'main/js/moment.js' %}"></script>
+  <script src="{% static 'main/js/pickaday.js' %}"></script>
+  <script src="{% static 'main/js/script.js' %}"></script>
+
+</html>
