@@ -13,6 +13,7 @@ def get_file_path(instance, filename):
     filename = '%s.%s' % (uuid.uuid4(), ext)
     return os.path.join('product/img', filename)
 
+
 class Product(models.Model):
     name = models.CharField(max_length=254)
     code = models.CharField(max_length=254)

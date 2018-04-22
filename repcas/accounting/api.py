@@ -5,7 +5,7 @@ from main import pagination
 from . import models, serializers
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class InvoiceViewSet(viewsets.ModelViewSet):
 
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = serializers.InvoiceSerializer
