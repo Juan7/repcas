@@ -20,3 +20,22 @@ class InvoiceSerializer(serializers.ModelSerializer):
         model = models.Invoice
         fields = ('id', 'items', 'client', 'date', 'number', 'total', 'is_payed',
                   'state', 'is_active', 'created_at')
+
+
+class QuotationItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = models.QuotationItem
+        fields = ('id', 'quotation', 'product', 'quantity',
+                  'price', 'total', 'is_active', 'created_at')
+
+
+class QuotationSerializer(serializers.ModelSerializer):
+    items = QuotationItemSerializer(many=True)
+
+    class Meta:
+
+        model = models.Quotation
+        fields = ('id', 'items', 'client', 'date', 'number', 'total',
+                  'state', 'is_active', 'created_at')
