@@ -5,19 +5,21 @@ from . import models
 
 @admin.register(models.Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['number']
+    raw_id_fields = ['client']
 
 
 @admin.register(models.InvoiceItem)
 class InvoiceItemAdmin(admin.ModelAdmin):
-    pass
+    raw_id_fields = ['invoice']
 
 
 @admin.register(models.Quotation)
 class QuotationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['number']
+    raw_id_fields = ['client']
 
 
 @admin.register(models.QuotationItem)
 class QuotationItemAdmin(admin.ModelAdmin):
-    pass
+    raw_id_fields = ['quotation']
