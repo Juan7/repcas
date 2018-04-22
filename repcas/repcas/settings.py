@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'rest_framework',
     'accounts',
+    'accounting',
+    'inventory',
     'main'
 ]
 
