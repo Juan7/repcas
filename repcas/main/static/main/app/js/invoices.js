@@ -3,14 +3,25 @@ const InvoicesView = Vue.component('InvoicesView', {
   delimiters: ['[[', ']]'],
   data: function () {
     return {
-      title: 'invoices'
+      invoices: []
     }
   },
   mounted: function () {
     $('#invoices').DataTable()
+    this.fetchData()
   },
   methods: {
-    check() {
+    fetchData: function () { _.debounce(this.fetchInvoices, 500)() },
+
+    fetchInvoices: function () {
+      const apiUrl = '/accounting/api/invoices/'
+      this.$http.get(apiUrl).then(response => {
+        this.invoices = response.body.results;
+        console.log(this.invoices)
+      }, response => {
+        console.log('error')
+        // error callback
+      })
     }
   }
 })
