@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'rest_framework',
     'django_filters',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'accounting',
     'inventory',
     'main'
@@ -54,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'accounts.middleware.RequestCookiesMiddleware',
+    'accounts.middleware.ProfileMiddleware',
 ]
 
 ROOT_URLCONF = 'repcas.urls'
@@ -133,3 +135,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Django auth
+
+LOGIN_REDIRECT_URL = 'accounts:client_login_redirect'
+
+LOGOUT_REDIRECT_URL = 'login'

@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from . import api
+from . import api, views
 
 app_name = 'accounts'
 
@@ -16,4 +16,5 @@ apipatterns = router.urls + [
 
 urlpatterns = [
     path('api/', include(apipatterns)),
+    path('client-redirect/', views.client_login_redirect, name='client_login_redirect')
 ]

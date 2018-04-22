@@ -1,0 +1,29 @@
+{% extends "registration/_layout_registration.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<style media="screen">
+  #loggin-form input[name=username] {
+    text-transform: lowercase;
+  }
+</style>
+
+<div class="container">
+  <form class="form-signin" method="post" novalidate id="loggin-form">
+    <h2 class="form-signin-heading">Iniciar sesión</h2>
+    {% csrf_token %}
+    {% include 'main/components/form.html' with placeholder=True form=form action=redirect_to  %}
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Iniciar sesión">
+  </form>
+</div>
+
+<script>
+  var input = document.getElementById('id_username')
+
+  input.onkeyup = function() {
+    this.value = this.value.toLowerCase()
+  }
+</script>
+
+{% endblock %}

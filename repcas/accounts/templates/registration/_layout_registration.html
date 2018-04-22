@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="text-center nav-auth">
+  <a href="{% url 'main:home' %}">
+    <img src="{% static 'main/img/logo.png' %}" alt="" height="25">
+  </a>
+</div>
+
+{% block content_registration %}{% endblock %}
+
+{% endblock %}
