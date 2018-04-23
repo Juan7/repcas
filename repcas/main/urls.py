@@ -6,6 +6,6 @@ from . import views
 app_name = 'main'
 
 urlpatterns = [
-    # url(r'^$', RedirectView.as_view(url='app')),
+    url(r'^$', RedirectView.as_view(url='app')),
     url(r'^app/$', views.app, name='app')
 ]
