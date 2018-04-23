@@ -9,21 +9,14 @@ from . import models
 
 @login_required
 def client_login_redirect(request):
-    print()
     profile = models.Profile.objects.select_related(
             'user', 'client'
         ).filter(
             user=request.user,
             is_active=True,
             client__is_active=True).first()
-    print(models.Profile.objects.select_related(
-            'user', 'client'
-        ).filter(
-            user=request.user,
-            is_active=True,
-            client__is_active=True))
-    print(profile)
+    # import pdb; pdb.set_trace()
     if profile:
         set_cookie(request, 'client_pk', profile.client.id)
-        return redirect(reverse('main:home'))
+        return redirect(reverse('main:app'))
     return redirect(reverse('login'))

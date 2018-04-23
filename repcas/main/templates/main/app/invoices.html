@@ -1,43 +1,46 @@
-<div>
+<div style="width:100%">
 	<h3>Facturas</h3>
 	<table id="invoices" class="table table-bordered" style="width:100%">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>Cliente</th>
+        <th>Numero</th>
+        <th>Fecha</th>
+        <th>Pagado</th>
+        
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011/04/25</td>
-        <td>$320,800</td>
+      <tr v-show="!invoices.length">
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
       </tr>
-      <tr>
+      <tr v-show="invoices.length" v-for="invoice in invoices">
+        <td>[[ invoice.client.name ]]</td>
+        <td>[[ invoice.number ]]</td>
+        <td>[[ invoice.date | date ]]</td>
+        <td>
+          <i v-if="invoice.is_payed" class="fa fa-check-circle-o" style="color: #8cc599"></i>
+          <i v-else class="fa fa-times-circle-o" style="color: #e2959d"></i>
+        </td>
+      </tr>
+      <!-- <tr>
         <td>Garrett Winters</td>
         <td>Accountant</td>
         <td>Tokyo</td>
         <td>63</td>
-        <td>2011/07/25</td>
-        <td>$170,750</td>
-      </tr>
+      </tr> -->
     </tbody>
     <tfoot>
-      <tr>
+      <!-- <tr>
         <th>Name</th>
         <th>Position</th>
         <th>Office</th>
         <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
-      </tr>
+        
+      </tr> -->
     </tfoot>
   </table>
 </div>

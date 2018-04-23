@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+from accounts.serializers import ClientSerializer
 
 
 class InvoiceItemSerializer(serializers.ModelSerializer):
@@ -14,6 +15,7 @@ class InvoiceItemSerializer(serializers.ModelSerializer):
 
 class InvoiceSerializer(serializers.ModelSerializer):
     items = InvoiceItemSerializer(many=True)
+    client = ClientSerializer(many=False)
 
     class Meta:
 

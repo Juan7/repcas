@@ -9,6 +9,7 @@ const InvoicesView = Vue.component('InvoicesView', {
   mounted: function () {
     $('#invoices').DataTable()
     this.fetchData()
+    console.log('moment', moment)
   },
   methods: {
     fetchData: function () { _.debounce(this.fetchInvoices, 500)() },

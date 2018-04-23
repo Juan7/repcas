@@ -43,6 +43,7 @@ class ProfileMiddleware(object):
         if request.user.is_authenticated:
             client_pk = request.COOKIES.get('client_pk')
             try:
+                # import pdb; pdb.set_trace()
                 profile = models.Profile.objects.select_related(
                     'client',
                     'user').get(

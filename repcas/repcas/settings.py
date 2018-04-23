@@ -139,6 +139,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Django auth
 
-LOGIN_REDIRECT_URL = 'accounts:client_login_redirect'
+LOGIN_REDIRECT_URL = '/accounts/client-redirect'
 
 LOGOUT_REDIRECT_URL = 'login'
