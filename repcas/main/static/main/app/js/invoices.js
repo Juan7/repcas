@@ -5,8 +5,9 @@ const InvoicesView = Vue.component('InvoicesView', {
     return {
       invoices: [],
       filters: {
-        'is_payed': true,
-        'number__icontains': undefined
+        'is_payed': false,
+        'number__icontains': undefined,
+        'client__name__icontains': undefined
       }
     }
   },
@@ -16,6 +17,7 @@ const InvoicesView = Vue.component('InvoicesView', {
     },
 
     'filters.number__icontains': function () {
+      this.filters.client__name__icontains = this.filters.number__icontains
       this.fetchData()
     }
   },
