@@ -14,6 +14,7 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
     queryset = models.Invoice.objects.all()
     filter_fields = {
+        'is_payed': ['exact'],
         'number': ['icontains']
     }
 

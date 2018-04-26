@@ -3,20 +3,34 @@ const InvoicesView = Vue.component('InvoicesView', {
   delimiters: ['[[', ']]'],
   data: function () {
     return {
-      invoices: []
+      invoices: [],
+      filters: {
+        'is_payed': true,
+        'number__icontains': undefined
+      }
+    }
+  },
+  watch: {
+    'filters.is_payed': function () {
+      this.fetchData()
+    },
+
+    'filters.number__icontains': function () {
+      this.fetchData()
     }
   },
   mounted: function () {
-    $('#invoices').DataTable()
     this.fetchData()
-    console.log('moment', moment)
   },
   methods: {
     fetchData: function () { _.debounce(this.fetchInvoices, 500)() },
 
     fetchInvoices: function () {
       const apiUrl = '/accounting/api/invoices/'
-      this.$http.get(apiUrl).then(response => {
+
+      const params = { params: this.filters }
+
+      this.$http.get(apiUrl, params).then(response => {
         this.invoices = response.body.results;
         console.log(this.invoices)
       }, response => {

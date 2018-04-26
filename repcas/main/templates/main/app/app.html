@@ -3,8 +3,8 @@
 
 {% block css %}
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-<link href="{% static "main/app/css/base.css" %}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="{% static "main/app/css/dashboard.css" %}">
 {% endblock %}
 
 {% load static %}
@@ -14,16 +14,14 @@
 {% block content %}
 	<div id="app">
 		{% include "main/app/navbar.html" %}
-    <div class="container-fluid p-0">
-      <section class="resume-section p-3 p-lg-5 d-flex d-column">
-      	<transition>
-				  <keep-alive>
-				  	<router-view></router-view>
-				  </keep-alive>
-				</transition>
-      </section>
-    </div>
-	</div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    	<transition>
+			  <keep-alive>
+			  	<router-view></router-view>
+			  </keep-alive>
+			</transition>
+    </main>
+  </div>
 {% endblock %}
 
 {% block js %}

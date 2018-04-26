@@ -1,46 +1,46 @@
-<div style="width:100%">
-	<h3>Facturas</h3>
-	<table id="invoices" class="table table-bordered" style="width:100%">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Numero</th>
-        <th>Fecha</th>
-        <th>Pagado</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-show="!invoices.length">
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr v-show="invoices.length" v-for="invoice in invoices">
-        <td>[[ invoice.client.name ]]</td>
-        <td>[[ invoice.number ]]</td>
-        <td>[[ invoice.date | date ]]</td>
-        <td>
-          <i v-if="invoice.is_payed" class="fa fa-check-circle-o" style="color: #8cc599"></i>
-          <i v-else class="fa fa-times-circle-o" style="color: #e2959d"></i>
-        </td>
-      </tr>
-      <!-- <tr>
-        <td>Garrett Winters</td>
-        <td>Accountant</td>
-        <td>Tokyo</td>
-        <td>63</td>
-      </tr> -->
-    </tbody>
-    <tfoot>
-      <!-- <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        
-      </tr> -->
-    </tfoot>
-  </table>
+<div>
+  <h1 class="h2" style="margin-bottom: 1em">Estados de cuenta</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary"
+        :class="{ active: filters.is_payed === undefined }"
+        @click="filters.is_payed = undefined">Todos</button>
+      <button class="btn btn-sm btn-outline-secondary"
+        :class="{ active: filters.is_payed }"
+        @click="filters.is_payed = true">Pagado</button>
+      <button class="btn btn-sm btn-outline-secondary"
+        :class="{ active: filters.is_payed === false }"
+        @click="filters.is_payed = false">No pagado</button>
+    </div>
+    <div>
+      <input type="search" class="form-control ds-input" id="search-input" placeholder="Buscar por número..." v-model="filters.number__icontains">
+    </div>
+  </div>
+
+  <br>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Número</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Pagado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="invoice in invoices">
+          <td>[[ invoice.client.name ]]</td>
+          <td>[[ invoice.number ]]</td>
+          <td>[[ invoice.date | date ]]</td>
+          <td>S/ [[ invoice.total ]]</td>
+          <td>
+            <i v-if="invoice.is_payed" class="fa fa-check-circle-o" style="color: #8cc599"></i>
+            <i v-else class="fa fa-times-circle-o" style="color: #e2959d"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
