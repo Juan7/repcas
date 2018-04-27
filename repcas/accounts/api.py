@@ -43,7 +43,7 @@ class AgentViewSet(viewsets.ModelViewSet):
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
 
     filter_fields = {
-        'name': ['icontains']
+        'name': ['icontains'],
     }
 
     def get_queryset(self):

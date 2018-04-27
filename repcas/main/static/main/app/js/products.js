@@ -75,12 +75,12 @@ const ProductsView = Vue.component('ProductsView', {
       const _this = this
       this.cart.push(this.newItem)
       const validPromos = this.promos.filter(function (promo) {
-        return (promo.require * promo.quantity) <= _this.newItem.quantity  && promo.quantity > 0
+        return (promo.product_quantity * promo.quantity) <= _this.newItem.quantity && promo.quantity > 0
       })
 
       for (let i = 0; i < validPromos.length; i++) {
         this.cart.push({
-          name: validPromos[i].product_name,
+          name: validPromos[i].product_name, 
           quantity: validPromos[i].quantity,
           price: 0
         })
@@ -153,7 +153,7 @@ const ProductsView = Vue.component('ProductsView', {
       const promos = this.promos.filter(function (promo) { return promo.quantity > 0 })
 
       for (let i = 0; i < promos.length; i++) {
-        if ((promos[i].require * promos[i].quantity) > this.newItem.quantity) {
+        if ((promos[i].product_quantity * promos[i].quantity) > this.newItem.quantity) {
           return false
         }
       }
