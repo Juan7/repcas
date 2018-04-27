@@ -2,7 +2,12 @@
   <h1 class="h2" style="margin-bottom: 1em">Productos</h1>
 
   <router-link class="nav-link"
-    :to="{ name: 'cart' }"><i class="fa fa-shopping-cart"></i>Ir al carrito</router-link><br><br>
+    :to="{ name: 'cart' }"><i class="fa fa-shopping-cart"></i>Ir al carrito</router-link>
+  <br><br>
+    
+  <div>
+    <input type="search" class="form-control ds-input" id="search-input" placeholder="Buscar..." v-model="filters.name__icontains">
+  </div>
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">

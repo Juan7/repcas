@@ -13,7 +13,10 @@ const ProductsView = Vue.component('ProductsView', {
       },
       promos: [],
       scales: [],
-      filters: {}
+      filters: {
+        'name__icontains': undefined,
+        'code__icontains': undefined
+      }
     }
   },
 
@@ -24,6 +27,11 @@ const ProductsView = Vue.component('ProductsView', {
         this.fetchData()
         this.setCartData()
       }
+    },
+      
+    'filters.name__icontains': function () {
+      this.filters.code__icontains = this.filters.name__icontains
+      this.fetchData()
     },
 
     'newItem.quantity' () {
@@ -45,7 +53,8 @@ const ProductsView = Vue.component('ProductsView', {
     fetchProducts: function () {
       const apiUrl = '/inventory/api/products/'
 
-      this.$http.get(apiUrl).then(response => {
+      const params = { params: this.filters }
+      this.$http.get(apiUrl, params).then(response => {
         this.products = response.body.results;
       }, response => {
         console.log('error')
@@ -94,7 +103,7 @@ const ProductsView = Vue.component('ProductsView', {
       
     fetchScales: function() {
       const apiUrl = '/inventory/api/product-scales/'
-      const params = {'product__id__exact': this.productId}
+      const params = {'params': {'product__id__exact': this.productId}}
       
       this.$http.get(apiUrl, params).then(response => {
         this.scales = response.body.results
@@ -106,7 +115,7 @@ const ProductsView = Vue.component('ProductsView', {
 
     fetchPromotions: function() {
       const apiUrl = '/inventory/api/product-promotions/'
-      const params = {'product__id__exact': this.productId}
+      const params = {'params': {'product__id__exact': this.productId}}
       
       this.$http.get(apiUrl, params).then(response => {
         this.promos = response.body.results
@@ -120,7 +129,7 @@ const ProductsView = Vue.component('ProductsView', {
       
     calculatePrice: function () {
       const apiUrl = `/inventory/api/check-product-price/${this.productId}`
-      const params = {'quantity': this.newItem.quantity}
+      const params = {'params': {'quantity': this.newItem.quantity}}
       this.$http.get(apiUrl, params).then(response => {
         this.newItem.price = response.body.calculated_price
       }, response => {

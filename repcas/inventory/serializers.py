@@ -25,7 +25,8 @@ class ProductPriceSerializer(serializers.ModelSerializer):
         
     def get_calculated_price(self, obj):
         base_price = obj.price
-        print(base_price)
+        quantity = self.context['request'].query_params.get('quantity', 0)
+
         product_distribution_channel = models.ProductDistributionChannel.objects.filter(
             product=obj, 
             distribution_channel=self.context['request'].profile.client.distribution_channel,
@@ -36,7 +37,8 @@ class ProductPriceSerializer(serializers.ModelSerializer):
         if obj.laboratory.discount:
             base_price = base_price - (base_price * obj.laboratory.discount)
         
-        scale = obj.productscale_set.filter(is_active=True).order_by('-start_date').first()
+        scale = obj.productscale_set.filter(
+            min_value__lte=quantity, max_value__gte=quantity, is_active=True).order_by('-start_date').first()
         if scale:
             base_price = base_price - (base_price * scale.discount)
             
@@ -46,8 +48,8 @@ class ProductPriceSerializer(serializers.ModelSerializer):
             is_active=True).first()
         if special_price:
             base_price = base_price - (base_price * special_price.discount)
-        print(base_price)
-        return base_price * Decimal('1.18')
+
+        return Decimal(quantity) * base_price * Decimal('1.18')
 
         
 class ProductScaleSerializer(serializers.ModelSerializer):
