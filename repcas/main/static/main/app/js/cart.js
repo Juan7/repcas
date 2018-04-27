@@ -53,6 +53,7 @@ const CartView = Vue.component('CartView', {
         localStorage.setItem('cart', JSON.stringify([]))
         this.makingOrder = false
         alert('En buena hora, pedido realizado.')
+        this.router.push({ name: 'products' })
       }, response => {
         this.makingOrder = false
         alert('ocurrio un error inesperado, contactese con el admin')
