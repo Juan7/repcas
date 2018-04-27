@@ -57,8 +57,11 @@
       </div>
     </header>
     <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+      <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" volume="50"/>
+        <source src="/static/main/video/video.mp4" type="video/mp4" />
+      </video/>
       <figure>
-        <div class="slide-custom" style="background-image: url('/static/main/img/slide-1.png');"/>
+        <div class="slide-custom">
           <div class="container">
             <figcaption>
               <div class="title-1">
@@ -73,7 +76,7 @@
         </div>
       </figure>
       <figure>
-        <div class="slide-custom" style="background-image: url('/static/main/img/slide-2.png');"/>
+        <div class="slide-custom">
           <div class="container">
             <figcaption>
               <div class="title-1">
@@ -88,7 +91,7 @@
         </div>
       </figure>
       <figure>
-        <div class="slide-custom" style="background-image: url('/static/main/img/slide-3.png');"/>
+        <div class="slide-custom">
           <div class="container">
             <figcaption>
               <div class="title-1">
@@ -159,76 +162,28 @@
           </p>
           <section class="regular slider" style="padding-top: 1rem; padding-bottom: 5rem;">
             <div>
-              <img src="/static/main/img/partners/3m.png">
+              <img src="/static/main/img/partners/1.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/bayer.png">
+              <img src="/static/main/img/partners/2.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/caferma.png">
+              <img src="/static/main/img/partners/3.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/cecifarma-min.png">
+              <img src="/static/main/img/partners/4.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/colgate.png">
+              <img src="/static/main/img/partners/5.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/farmindustria.png">
+              <img src="/static/main/img/partners/6.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/amaricanos.png">
+              <img src="/static/main/img/partners/7.png">
             </div>
             <div>
-              <img src="/static/main/img/partners/unilene.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/tuinies.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/unilene.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/teva.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/saval.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/sanofi.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/roxfarma.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/roemmers.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/quilab.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/nipro.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/markos.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/ludber.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/lasier.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/johnson.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/glenmark.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/genfar.png">
-            </div>
-            <div>
-              <img src="/static/main/img/partners/farvet.png">
+              <img src="/static/main/img/partners/8.png">
             </div>
           </section>
         </div>
@@ -389,13 +344,13 @@
           mapTypeId: 'roadmap'
         });
 
-        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var iconBase = 'static/main/img/';
         var icons = {
           parking: {
             icon: iconBase + 'parking_lot_maps.png'
           },
           library: {
-            icon: iconBase + 'library_maps.png'
+            icon: iconBase + 'map-maker.png'
           },
           info: {
             icon: iconBase + 'info-i_maps.png'

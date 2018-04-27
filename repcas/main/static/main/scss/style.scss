@@ -1,0 +1,345 @@
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+@import 'base/base';
+
+$contact-team: (
+  columns: 12,
+  gutter: 0,
+  media: 1000px,
+);
+
+$medium-screen: (
+  columns: 12,
+  gutter: 2rem,
+  media: 950px,
+);
+
+.team-row {
+  @include grid-collapse($contact-team);
+
+  overflow: hidden;
+}
+
+.team-col-6 {
+  @include grid-media($contact-team) {
+    @include grid-column(6);
+  }
+}
+
+.logo {
+  display: inline-block;
+}
+
+.container {
+  @include margin(0 auto);
+
+  max-width: 1140px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  -webkit-transition: .2s;
+  transition: .4s;
+
+  background: rgba(35,31,32,.8);
+  background: -moz-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(35,31,32,.8)), color-stop(100%, rgba(255,255,255,0)));
+  background: -webkit-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
+  background: -o-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
+  background: -ms-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff', GradientType=0 );
+}
+
+.header-scroll {
+  background: #fff;
+
+  nav {
+    margin-top: 5px;
+
+    a {
+      color: $dark-gray;
+
+       &:hover {
+         color: $dark-gray;
+       }
+    }
+  }
+}
+
+nav {
+  background-color: transparent;
+  float: right;
+
+  ul {
+    text-align: center;
+  }
+
+  li {
+    @include padding($small-spacing * 1.5 0);
+
+    display: inline-block;
+
+    a {
+      @include padding(0 $base-spacing);
+
+      color: $white;
+      border-right: 1px solid $yellow;
+      display: inline-block;
+      font-size: 75%;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 300;
+
+      &:hover {
+        color: $white;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.nosotros-bg-1 {
+  @include padding($base-spacing);
+  background-position: center;
+  background-size: cover;
+  color: $white;
+}
+
+.header-view {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  text-align: center;
+  padding-top: 120px;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.background-img-general {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  @include padding($base-spacing * 2);
+}
+
+.login {
+  @include margin(0 auto);
+
+  max-width: 300px;
+  padding-bottom: $base-spacing * 2;
+  text-align: center;
+
+  input[type="submit"] {
+    background-color: $white;
+    border-bottom: 2px solid $yellow;
+  }
+}
+
+p {
+  font-weight: 300;
+}
+
+.text-white {
+  color: #fff;
+}
+
+section {
+  // padding-top: 76px;
+}
+
+.row {
+  @include grid-collapse($contact-team);
+
+  overflow: hidden;
+}
+
+.col-6 {
+  @include grid-media($contact-team){
+    @include grid-column(6);
+  }
+}
+
+.col-4 {
+  @include grid-column(4);
+}
+
+.col-3 {
+  @include grid-column(3);
+}
+
+.title-1 {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.title-2 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-top: $small-spacing;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.title-3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.mark {
+  color: $red-1;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.price {
+  @include padding($small-spacing / 2);
+
+  background-color: $red-2;
+  color: $white;
+  margin-top: $small-spacing;
+}
+
+.map-container {
+  position: relative;
+}
+
+.contact-form {
+  bottom: 0;
+  color: $white;
+  display: -webkit-box;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  form {
+    @include padding($base-spacing);
+
+    background-color: rgba(0, 0, 0, .8);
+    height: 100%;
+    width: 300px;
+
+    input {
+      background-color: transparent;
+      border: 1px solid $white;
+      color: $white;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $white;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $white;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $white;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $white;
+      }
+    }
+  }
+}
+
+.contact-info {
+  @include padding($base-spacing * 4);
+
+  background-color: rgba($primary-color, .8);
+  color: $white;
+  width: 400px;
+}
+
+.team-info {
+  @include padding($base-spacing);
+
+  background-color: $primary-color;
+  color: $white;
+  font-size: 90%;
+  font-weight: 300;
+  text-align: center;
+}
+
+.team-member-info {
+  @include padding($base-spacing);
+
+  text-align: center;
+}
+
+.team-member-photo {
+  img {
+    display: block;
+  }
+}
+
+.footer-head {
+  @include padding($small-spacing);
+
+  background-color: $primary-color;
+  color: $white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer-info {
+  @include padding($small-spacing);
+
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.slide-custom {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 184px);
+  width: 100%;
+}
+
+#slideshow-nosotros {
+    margin: 50px auto;
+    position: relative;
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+}
+
+#slideshow-nosotros > div {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
+#map {
+  height: 430px;
+}
+
+#video_background {
+  height: 100% !important;
+  width: 100% !important;
+}
