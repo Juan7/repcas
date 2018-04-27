@@ -35,6 +35,7 @@
 	<script src="{% static "main/app/js/products.js" %}"></script>
 	<script src="{% static "main/app/js/invoices.js" %}"></script>
 	<script src="{% static "main/app/js/quotations.js" %}"></script>
+	<script src="{% static "main/app/js/cart.js" %}"></script>
 	<script src="{% static "main/app/js/app.js" %}"></script>
 {% endblock %}
 
@@ -47,5 +48,8 @@
 </script>
 <script type="text/x-template" id="quotations-view">
 	{% include "main/app/quotations.html" %}
+</script>
+<script type="text/x-template" id="cart-view">
+	{% include "main/app/cart.html" %}
 </script>
 {% endblock %}

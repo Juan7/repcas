@@ -16,3 +16,8 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(models.Agent)
 class AgentAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.DistributionChannel)
+class DistributionChannelAdmin(admin.ModelAdmin):
+    pass

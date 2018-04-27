@@ -2,6 +2,7 @@ const routes = [
   { path: '/', name: 'invoices', component: InvoicesView },
   { path: '/productos', name: 'products', component: ProductsView },
   { path: '/cotizaciones', name: 'quotations', component: QuotationsView },
+  { path: '/carrito-de-compras', name: 'cart', component: CartView }
 ]
 
 

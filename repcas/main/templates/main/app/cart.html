@@ -1,0 +1,29 @@
+<div>
+
+  <router-link class="nav-link"
+    :to="{ name: 'products' }">< Regresar a productos</router-link>
+
+  <h1 class="h2" style="margin-bottom: 1em">Carrito de pedidos</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="product in products">
+          <td>[[ product.name ]]</td>
+          <td>[[ product.code ]]</td>
+          <td>[[ product.quantity ]]</td>
+          <td>S/ [[ product.price ]]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
