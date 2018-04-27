@@ -17,5 +17,6 @@ apipatterns = router.urls + [
 urlpatterns = [
     path('api/', include(apipatterns)),
     path('client-redirect/', views.client_login_redirect, name='client_login_redirect'),
-    path('usuario-sin-cliente/', views.non_user_client, name='non_user_client')
+    path('usuario-sin-cliente/', views.non_user_client, name='non_user_client'),
+    path('unete/', views.join, name='join')
 ]
