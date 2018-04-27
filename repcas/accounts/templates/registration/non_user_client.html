@@ -12,7 +12,7 @@
     <header class="header-scroll">
       <div class="container">
         <div class="logo">
-          <img src="img/logo.png" alt="" height="70">
+          <img src="/static/main/img/logo.png" alt="" height="70">
         </div>
         <nav>
           <ul>
@@ -55,39 +55,11 @@
       <main class="background-img-general text-white" style="background-image: url('/static/main/img/background-red.png'); height: 100%;">
         <div class="login">
           <h1>
-            <strong>Servicio Cliente Extranet</strong>
+            <strong>Acceso no autorizado</strong>
           </h1>
           <p>
-            ACCESO DE USUARIO REGISTRADO
+            {{ message }}
           </p>
-          <br>
-          <br>
-          <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-              {% for error in form.non_field_errors %}
-                <div class="input-error">{{ error }}</div>
-              {% endfor %}
-            {% endif %}
-            <div class="row">
-              <div class="col-6">
-                <label for="">Usuario</label>
-              </div>
-              <div class="col-6">
-                {% include 'main/components/form_input.html' with field=form.username %}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <label for="">Contraseña</label>
-              </div>
-              <div class="col-6">
-                {% include 'main/components/form_input.html' with field=form.password %}
-              </div>
-            </div>
-            <br>
-            <input type="submit" name="" value="Ingresar" class="btn-2">
-          </form>
         </div>
       </main>
   </body>

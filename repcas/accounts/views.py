@@ -19,4 +19,12 @@ def client_login_redirect(request):
     if profile:
         set_cookie(request, 'client_pk', profile.client.id)
         return redirect(reverse('main:app'))
-    return redirect(reverse('login'))
+    return redirect(reverse('accounts:non_user_client'))
+
+
+@login_required
+def non_user_client(request):
+    context = {
+        'message': 'Su usuario aún no cuenta con un cliente asociado. Comuníquese con Representaciones Castillo para resolver este invonveniente.'
+    }
+    return render(request, 'registration/non_user_client.html', context)

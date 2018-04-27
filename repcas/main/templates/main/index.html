@@ -1,0 +1,426 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>REPCAS</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/7.0.0/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/simple-slideshow-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/slick/slick-theme.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="/static/main/img/logo.png" alt="" height="70">
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="{% url 'main:home' %}">
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a href="#nosotros">
+                Nosotros
+              </a>
+            </li>
+            <li>
+              <a href="#partners">
+                Partners
+              </a>
+            </li>
+            <li>
+              <a href="#contactanos">
+                Contactanos
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'main:promotions' %}">
+                Promociones
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}">
+                Servicio al cliente
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+      <figure>
+        <div class="slide-custom" style="background-image: url('/static/main/img/slide-1.png');"/>
+          <div class="container">
+            <figcaption>
+              <div class="title-1">
+                <span class="font-weight-300">BIENVENIDO A</span> <br>
+                <strong>REPRESENTACIONES CASTILLO</strong>
+              </div>
+              <div class="title-2">
+                Somos la distribuidora mas importante del sur del Perú
+              </div>
+            </figcaption>
+          </div>
+        </div>
+      </figure>
+      <figure>
+        <div class="slide-custom" style="background-image: url('/static/main/img/slide-2.png');"/>
+          <div class="container">
+            <figcaption>
+              <div class="title-1">
+                <span class="font-weight-300">BIENVENIDO A</span> <br>
+                <strong>REPRESENTACIONES CASTILLO</strong>
+              </div>
+              <div class="title-2">
+                Somos la distribuidora mas importante del sur del Perú
+              </div>
+            </figcaption>
+          </div>
+        </div>
+      </figure>
+      <figure>
+        <div class="slide-custom" style="background-image: url('/static/main/img/slide-3.png');"/>
+          <div class="container">
+            <figcaption>
+              <div class="title-1">
+                <span class="font-weight-300">BIENVENIDO A</span> <br>
+                <strong>REPRESENTACIONES CASTILLO</strong>
+              </div>
+              <div class="title-2">
+                Somos la distribuidora mas importante del sur del Perú
+              </div>
+            </figcaption>
+          </div>
+        </div>
+      </figure>
+    </div>
+    <section id="nosotros">
+      <div class="header-view" style="background-image: url('/static/main/img/cabeceras/nosotros.png');">
+        NOSOTROS
+      </div>
+      <div class="background-img-general" style="background-image: url('/static/main/img/background-red.png');">
+        <div class="container">
+          <div class="row">
+            <div class="col-6" style="padding: 4rem;">
+              <div id="slideshow-nosotros">
+                 <div>
+                   <img src="/static/main/img/nosotros-img.png" alt="">
+                 </div>
+                 <div>
+                   <img src="/static/main/img/nosotros-img.png" alt="">
+                 </div>
+              </div>
+            </div>
+            <div class="col-6" style="color: #fff;">
+              <br>
+              <br>
+              <p class="text-justify">
+                Somos una empresa dedicada al almacenamiento, comercialización, distribución y abastecimiento de productos farmacéuticos, dispositivos médicos, productos sanitarios y productos de consumo masivo, de los principales laboratorios y fabricantes nacionales, transnacionales y multinacionales.
+              </p>
+              <br>
+              <h1 class="text-center">
+                MISIÓN
+              </h1>
+              <p class="text-justify">
+                "Crear permanentemente valores agregados, con innovación, diversi cación y con responsabilidad social a todos nuestros procesos y servicios para satisfacer las necesidades de nuestros clientes y de la sociedad."
+              </p>
+              <br>
+              <h1 class="text-center">
+                VISIÓN
+              </h1>
+              <p class="text-justify">
+                "Ser la Droguería y Distribuidora líder en la Macro Región Sur, con Calidad de Servicio, con Recursos Humanos, Materiales y tecnología de punta, que satisfagan las necesidades de nuestros Clientes y permitan la mejora de calidad de vida en la Sociedad."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="partners">
+      <div class="header-view" style="background-image: url('/static/main/img/slide-1.png');">
+        PARTNERS
+      </div>
+      <div>
+        <div class="container text-center">
+          <br>
+          <br>
+          <br>
+          <p>
+            Representaciones Castillo mantiene alianzas estratégicas con empresas reconocidas a nivel nacional que han con ando en nuestro Grupo para desarrollar y comercializar sus marcas en el país.
+          </p>
+          <section class="regular slider" style="padding-top: 1rem; padding-bottom: 5rem;">
+            <div>
+              <img src="/static/main/img/partners/3m.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/bayer.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/caferma.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/cecifarma-min.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/colgate.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/farmindustria.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/amaricanos.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/unilene.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/tuinies.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/unilene.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/teva.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/saval.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/sanofi.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/roxfarma.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/roemmers.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/quilab.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/nipro.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/markos.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/ludber.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/lasier.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/johnson.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/glenmark.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/genfar.png">
+            </div>
+            <div>
+              <img src="/static/main/img/partners/farvet.png">
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <section id="contactanos">
+      <div class="header-view" style="background-image: url('/static/main/img/cabeceras/contacto.png');">
+        CONTACTO
+      </div>
+      <div class="map-container">
+        <div id="map"></div>
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15308.878175988943!2d-71.53837418164089!3d-16.413672646075476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDI0JzUxLjMiUyA3McKwMzInNDkuMiJX!5e0!3m2!1ses-419!2spe!4v1523333956075" width="100%" height="420" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+        <div class="contact-form">
+          <form>
+            <h1>
+              LLene sus datos para contactarnos con usted.
+            </h1>
+            <input type="text" name="" value="" placeholder="Nombres">
+            <input type="text" name="" value="" placeholder="Apellidos">
+            <input type="email" name="" value="" placeholder="Correo">
+            <input type="text" name="" value="" placeholder="Teléfono">
+            <input type="text" name="" value="" placeholder="Empresa">
+            <br>
+            <input type="submit" name="" value="ENVIAR">
+          </form>
+          <!-- <div class="contact-info text-center">
+            <strong style="font-size: 1.3rem;">LOCAL PRINCIPAL</strong><br>
+            Av. Mario Vargas Llosa (Ex. Av. Parra) N°369 Cercado De
+            Arequipa <br>
+            TELÉFONO <br><br>
+            (054) 234577 <br>
+            (054) 214361 <br>
+            (054) 696763
+          </div> -->
+        </div>
+      </div>
+      <div class="text-center text-white" style="background-color: #7a152e; padding: 1.5rem;">
+        <p>
+          LOCAL PRINCIPAL
+        </p>
+        <p class="">
+          Av. Mario Vargas Llosa (Ex. Av. Parra) N°369 Cercado De Arequipa &nbsp;&nbsp;&nbsp;&nbsp; TELÉFONO (054) 234577 &nbsp;&nbsp;&nbsp;&nbsp; (054) 214361 &nbsp;&nbsp;&nbsp;&nbsp; (054) 696763
+        </p>
+      </div>
+      <div class="text-center" style="padding: 3rem; color: #7a152e; font-size: 1.2rem;">
+        TENEMOS UN AGENTE DE VENTAS EN CADA CIUDAD, <br>
+        ESPERANDO A ATENDERTE
+      </div>
+      <div class="" style="padding: 0 3rem;">
+        <img src="/static/main/img/cities.png" alt="" width="100%;">
+        <div class="text-center text-white" style="background-color: #7a152e; padding: 1.5rem; font-size: 1.2rem; margin: 3rem 0;">
+          Trabaja con Nosotros y Forma Parte de Nuestro Equipo
+        </div>
+      </div>
+      <div class="text-center">
+        <img src="/static/main/img/icon-pin.png" height="17">&nbsp; Av. Parra N°369 - Cercado Arequipa &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/static/main/img/icon-phone.png" alt="" height="17">&nbsp; (01)614 4000
+      </div>
+      <br>
+      <div class="header-scroll">
+        <nav style="float: inherit;">
+          <ul>
+            <li>
+              <a href="index.html">
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a href="#nosotros">
+                Nosotros
+              </a>
+            </li>
+            <li>
+              <a href="#partners">
+                Partners
+              </a>
+            </li>
+            <li>
+              <a href="#contactanos">
+                Contactanos
+              </a>
+            </li>
+            <li>
+              <a href="promociones.html">
+                Promociones
+              </a>
+            </li>
+            <li>
+              <a href="servicio-cliente.html">
+                Servicio al cliente
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <br>
+    </section>
+    <script src="/static/main/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/main/js/hammer.min.js"></script>
+    <script src="/static/main/js/better-simple-slideshow.min.js"></script>
+    <script>
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 76) {
+        $("header").addClass("header-scroll");
+
+      } else {
+        $("header").removeClass("header-scroll");
+      }
+    });
+
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500
+      });
+    });
+
+      var opts = {
+          auto : {
+              speed : 3500,
+              pauseOnHover : true
+          },
+          fullScreen : false,
+          swipe : true
+      };
+      makeBSS('.num1', opts);
+
+      var opts2 = {
+          auto : false,
+          fullScreen : true,
+          swipe : true
+      };
+      makeBSS('.num2', opts2);
+
+      $("#slideshow > div:gt(0)").hide();
+
+      setInterval(function() {
+        $('#slideshow-nosotros > div:first')
+          .fadeOut(1000)
+          .next()
+          .fadeIn(1000)
+          .end()
+          .appendTo('#slideshow-nosotros');
+      }, 3000);
+    </script>
+
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: new google.maps.LatLng(-16.4117533, -71.5396925),
+          mapTypeId: 'roadmap'
+        });
+
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          parking: {
+            icon: iconBase + 'parking_lot_maps.png'
+          },
+          library: {
+            icon: iconBase + 'library_maps.png'
+          },
+          info: {
+            icon: iconBase + 'info-i_maps.png'
+          }
+        };
+
+        var features = [
+          {
+            position: new google.maps.LatLng(-16.41425341958453, -71.54748314155578),
+            type: 'library'
+          }
+        ];
+
+        // Create markers.
+        features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy52glXGzzX_sU13kV9GB_2-i-fJH3m5M&callback=initMap">
+    </script>
+  </body>
+</html>

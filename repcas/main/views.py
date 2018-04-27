@@ -5,10 +5,13 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    # import pdb; pdb.set_trace()
     context = {}
-    print(request.profile)
-    return render(request, 'main/home.html', context)
+    return render(request, 'main/index.html', context)
+
+
+def promotions(request):
+    context = {}
+    return render(request, 'main/promociones.html', context)
 
 
 @login_required

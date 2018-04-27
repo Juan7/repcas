@@ -62,19 +62,13 @@
           </p>
           <br>
           <br>
-          <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-              {% for error in form.non_field_errors %}
-                <div class="input-error">{{ error }}</div>
-              {% endfor %}
-            {% endif %}
+          <form>
             <div class="row">
               <div class="col-6">
-                <label for="">Usuario</label>
+                <label for="">Usuario / Mail</label>
               </div>
               <div class="col-6">
-                {% include 'main/components/form_input.html' with field=form.username %}
+                <input type="text" name="" value="">
               </div>
             </div>
             <div class="row">
@@ -82,7 +76,7 @@
                 <label for="">Contraseña</label>
               </div>
               <div class="col-6">
-                {% include 'main/components/form_input.html' with field=form.password %}
+                <input type="text" name="" value="">
               </div>
             </div>
             <br>

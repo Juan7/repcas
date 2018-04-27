@@ -12,6 +12,12 @@ def get_file_path(instance, filename):
     return os.path.join('user/avatar', filename)
 
 
+class DistributionChannel(models.Model):
+    """Distribution channel for a client."""
+    name = models.CharField(max_length=254)
+    code = models.CharField(max_length=254)
+
+
 class Client(models.Model):
     name = models.CharField(max_length=254)
     image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
@@ -20,6 +26,8 @@ class Client(models.Model):
     address = models.CharField(max_length=254)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=20, null=True, blank=True)
+    
+    distribution_channel = models.ForeignKey(DistributionChannel, on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
