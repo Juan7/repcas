@@ -11,7 +11,7 @@ router.register('profile', api.ProfileViewSet, base_name='api_profile')
 router.register('agent', api.AgentViewSet, base_name='api_agent')
 
 apipatterns = router.urls + [
-
+    path('make-order/', views.MakeOrder.as_view())
 ]
 
 urlpatterns = [

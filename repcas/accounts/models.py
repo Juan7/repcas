@@ -16,7 +16,7 @@ class DistributionChannel(models.Model):
     """Distribution channel for a client."""
     name = models.CharField(max_length=254)
     code = models.CharField(max_length=254)
-    
+
     def __str__(self):
         return f'{self.name} ({self.code})'
 

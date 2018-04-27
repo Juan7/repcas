@@ -9,9 +9,11 @@ const ProductsView = Vue.component('ProductsView', {
       newItem: {
         name: '',
         quantity: 0,
-        price: 0
+        price: 0,
+        code: ''
       },
       promos: [],
+      promoWarn: '',
       scales: [],
       filters: {
         'name__icontains': undefined,
@@ -66,11 +68,14 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     clearCartModal: function () {
-      this.newItem = { quantity: 1, price: 0, name: '' }
+      this.newItem = { quantity: 1, price: 0, name: '', code: '' }
     },
 
     addToCart: function () {
-      if (!this.isValidPromoQuantity) { return; }
+      if (!this.isValidPromoQuantity()) {
+        this.promoWarn = true
+        return
+      }
 
       const _this = this
       this.cart.push(this.newItem)
@@ -79,9 +84,11 @@ const ProductsView = Vue.component('ProductsView', {
       })
 
       for (let i = 0; i < validPromos.length; i++) {
+        console.log('validPromos', validPromos)
         this.cart.push({
-          name: validPromos[i].product_name, 
+          name: validPromos[i].child_product.name,
           quantity: validPromos[i].quantity,
+          code: validPromos[i].child_product.code,
           price: 0
         })
       }
@@ -92,6 +99,7 @@ const ProductsView = Vue.component('ProductsView', {
     setNewItem: function (product) {
       this.newItem.price = product.price
       this.newItem.name = product.name
+      this.newItem.code = product.code
       this.newItem.quantity = 1
       this.productId = product.id
       this.promos = []
@@ -122,6 +130,7 @@ const ProductsView = Vue.component('ProductsView', {
         for (let promo of this.promos) {
           promo.quantity = 0
         }
+        // this.$set(this, 'promos', this.promos)
       }, response => {
         console.log('error')
       })
@@ -129,7 +138,7 @@ const ProductsView = Vue.component('ProductsView', {
       
     calculatePrice: function () {
       const apiUrl = `/inventory/api/check-product-price/${this.productId}`
-      const params = {'params': {'quantity': this.newItem.quantity}}
+      const params = {'params': {'quantity': this.newItem.quantity || 0 }}
       this.$http.get(apiUrl, params).then(response => {
         this.newItem.price = response.body.calculated_price
       }, response => {
@@ -145,10 +154,8 @@ const ProductsView = Vue.component('ProductsView', {
       let cart = cartData.concat(this.cart)
       localStorage.setItem('cart', JSON.stringify(cart))
       this.cart = []
-    }
+    },
 
-  },
-  computed: {
     isValidPromoQuantity: function () {
       const promos = this.promos.filter(function (promo) { return promo.quantity > 0 })
 
@@ -159,5 +166,6 @@ const ProductsView = Vue.component('ProductsView', {
       }
       return true
     }
+
   }
 })

@@ -146,3 +146,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/accounts/client-redirect'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# Email settings
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+
+EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
+
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True

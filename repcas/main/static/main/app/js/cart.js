@@ -5,7 +5,8 @@ const CartView = Vue.component('CartView', {
     return {
       products: [],
       agents: [],
-      agentId: undefined
+      agentId: undefined,
+      makingOrder: false
     }
   },
 
@@ -38,6 +39,24 @@ const CartView = Vue.component('CartView', {
         }
       }, response => {
         console.log('error')
+      })
+    },
+    makeOrder: function (argument) {
+      const apiUrl = '/accounts/api/make-order/'
+      const order = {
+        agent_id: this.agentId,
+        products: this.products
+      }
+      
+      this.makingOrder = true
+      this.$http.post(apiUrl, order).then(response => {
+        localStorage.setItem('cart', JSON.stringify([]))
+        this.makingOrder = false
+        alert('En buena hora, pedido realizado.')
+      }, response => {
+        this.makingOrder = false
+        alert('ocurrio un error inesperado, contactese con el admin')
+        console.log(response)
       })
     }
   }

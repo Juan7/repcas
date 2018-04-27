@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<p>Listado de productos requeridos:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Código</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.code }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>S/ {{ product.price|floatformat:2 }}</td>
+    </tr>
+  	{% endfor %}
+  </tbody>
+</table>
+<h3>Total: S/ {{ total|floatformat:2 }}</h3>
+
+</body>
+</html>

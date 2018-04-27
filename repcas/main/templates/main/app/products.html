@@ -76,6 +76,9 @@
             </div>
             <div class="col-8" v-show="promos.length">
               <p>Promociones</p>
+              <div class="alert alert-warning" role="alert" v-show="promoWarn" style="font-size: 12px">
+                <strong>Cantidades no válidas!</strong> verifique que las cantidades ingresadas sean coherentes con la cantidad del producto
+              </div>
               <table class="table" id="promotion-table">
                 <thead>
                   <tr>

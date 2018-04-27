@@ -1,6 +1,15 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import permissions
+
+from django.template import loader
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from accounts.models import Agent
+from django.shortcuts import get_object_or_404
 
 from .functions import set_cookie
 
@@ -28,3 +37,38 @@ def non_user_client(request):
         'message': 'Su usuario aún no cuenta con un cliente asociado. Comuníquese con Representaciones Castillo para resolver este invonveniente.'
     }
     return render(request, 'registration/non_user_client.html', context)
+
+
+class MakeOrder(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+
+        current_site = get_current_site(request)
+        site_name = current_site.name
+        domain = current_site.domain
+
+        agent = get_object_or_404(Agent, id=request.data.get('agent_id'))
+        products_data = request.data.get('products')
+        total = 0
+        for product in products_data:
+            total += float(product['price'])
+
+        context = {
+            'agent': agent,
+            'domain': domain,
+            'protocol': 'https' if request.is_secure() else 'http',
+            'products': products_data,
+            'total': total
+        }
+
+        from_email = f'{site_name} Team <no-reply@{domain}>'
+
+        to_email = agent.email
+        subject = 'Pedido'
+
+        template = loader.get_template('accounts/order_email.html')
+        message = template.render(context)
+
+        send_mail(subject, '', from_email, [to_email], fail_silently=True, html_message=message)
+        return Response()
