@@ -1,18 +1,9 @@
 <div>
   <h1 class="h2" style="margin-bottom: 1em">Productos</h1>
 
-  <table class="table table-sm" style="max-width: 300px">
-  	<tr>
-  		<td><strong>Productos únicos agregados</strong></td>
-  		<td>[[ cartUniqueProducts.length ]]</td>
-  	</tr>
-  	<tr>
-  		<td><strong>Productos agregados</strong></td>
-  		<td>[[ cartProducts ]]</td>
-  	</tr>
-  </table>
+  <router-link class="nav-link"
+    :to="{ name: 'cart' }"><i class="fa fa-shopping-cart"></i>Ir al carrito</router-link><br><br>
 
-  <br>
   <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
@@ -32,14 +23,83 @@
           <td>S/ [[ product.price ]]</td>
           <td style="width: 250px">
 						<div class="input-group">
-						  <input type="number" min="0" class="form-control" placeholder="Cantidad" v-model="product.orderQuantity">
 						  <div class="input-group-append">
-						    <button class="btn btn-outline-secondary" type="button" @click="addToCart(product)">Agregar +</button>
+						    <button class="btn btn-outline-secondary" type="button"
+                  data-toggle="modal" data-target="#cartModal"
+                  @click="setNewItem(product)">Agregar +</button>
 						  </div>
 						</div>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">[[ newItem.name ]]</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row text-center">
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Cantidad</label>
+                <div class="col-sm-8">
+                  <input type="number" min="0" class="form-control form-control-sm"
+                    v-model="newItem.quantity">
+                </div>
+              </div>
+            </div>
+            <div class="col-6"><strong>precio: S/ [[ newItem.price ]]</strong></div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-4">
+              <p>Escalas</p>
+              <table class="table">
+                <tr><td>x - y</td><td>-x</td></tr>
+                <tr><td>x - y</td><td>-x</td></tr>
+                <tr><td>x - y</td><td>-x</td></tr>
+              </table>
+            </div>
+            <div class="col-8">
+              <p>Promociones [[isValidPromoQuantity]]</p>
+              <table class="table" id="promotion-table">
+                <thead>
+                  <tr>
+                    <th>Por la compra de</th>
+                    <th>Se Puede llevar</th>
+                    <th>A llevar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="promo in promos">
+                    <td>[[ promo.require ]]</td>
+                    <td>1 [[ promo.product_name ]]</td>
+                    <td>
+                      <input type="number" min="0" class="form-control form-control-sm" style="width: 100px"
+                        v-model="promo.quantity"
+                        :class="{ 'is-invalid': (promo.quantity * promo.require) > newItem.quantity }">
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" @click="addToCart()">Agregar</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
