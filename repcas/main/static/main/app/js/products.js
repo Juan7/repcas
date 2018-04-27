@@ -17,12 +17,23 @@ const ProductsView = Vue.component('ProductsView', {
     }
   },
 
+  watch: {
+    '$route': function () {
+      if (this.$route.name === 'products') {
+        this.resetData()
+        this.fetchData()
+        this.setCartData()
+      }
+    }
+  },
+
   mounted: function () {
     const _this = this
+    this.resetData()
     this.fetchData()
-    $('#cartModal').on('hidden.bs.modal', function () {
-      _this.resetData()
-    })
+    this.setCartData()
+
+    $('#cartModal').on('hidden.bs.modal', function () { _this.clearCartModal() })
   },
   methods: {
   	fetchData: function () { _.debounce(this.fetchProducts, 500)() },
@@ -38,6 +49,10 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     resetData: function () {
+      Object.assign(this.$data, this.$options.data())
+    },
+
+    clearCartModal: function () {
       this.newItem = { quantity: 1, price: 0, name: '' }
     },
 
@@ -46,16 +61,19 @@ const ProductsView = Vue.component('ProductsView', {
 
       const _this = this
       this.cart.push(this.newItem)
-      const validPromos = this.promos.filter(function (promo) { return (promo.require * promo.quantity) <= _this.newItem.quantity })
+      const validPromos = this.promos.filter(function (promo) {
+        return (promo.require * promo.quantity) <= _this.newItem.quantity  && promo.quantity > 0
+      })
 
       for (let i = 0; i < validPromos.length; i++) {
         this.cart.push({
-          name: validPromos[i].name,
+          name: validPromos[i].product_name,
           quantity: validPromos[i].quantity,
           price: 0
         })
       }
-      localStorage.setItem('cart', JSON.stringify(this.cart))
+      this.setCartData()
+      $('#cartModal').modal('hide')
     },
 
     setNewItem: function (product) {
@@ -92,6 +110,16 @@ const ProductsView = Vue.component('ProductsView', {
         console.log('error')
       })
     },
+
+    setCartData: function () {
+      let cartData = JSON.parse(localStorage.getItem('cart'))
+      if (!cartData) {
+        cartData = []
+      }
+      let cart = cartData.concat(this.cart)
+      localStorage.setItem('cart', JSON.stringify(cart))
+      this.cart = []
+    }
 
   },
   computed: {
