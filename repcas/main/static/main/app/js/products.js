@@ -4,26 +4,16 @@ const ProductsView = Vue.component('ProductsView', {
   data: function () {
     return {
       products: [],
+      productId: undefined,
       cart: [],
       newItem: {
         name: '',
         quantity: 1,
         price: 0
       },
-      promos: [
-        {
-          id: 1,
-          require: 5,
-          product_name: 'tomates',
-          quantity: 0
-        },
-        {
-          id: 2,
-          require: 3,
-          product_name: 'plato',
-          quantity: 0
-        }
-      ]
+      promos: [],
+      scales: [],
+      filters: {}
     }
   },
 
@@ -71,8 +61,37 @@ const ProductsView = Vue.component('ProductsView', {
     setNewItem: function (product) {
       this.newItem.price = product.price
       this.newItem.name = product.name
+      this.productId = product.id
+      this.promos = []
+      this.scales = []
+      
+      this.fetchScales()
+      this.fetchPromotions()
+    },
+      
+    fetchScales: function() {
+      const apiUrl = '/inventory/api/product-scales/'
+      const params = {'product__id__exact': this.productId}
+      
+      this.$http.get(apiUrl, params).then(response => {
+        this.scales = response.body.results
+        console.log(this.scales)
+      }, response => {
+        console.log('error')
+      })
     },
 
+    fetchPromotions: function() {
+      const apiUrl = '/inventory/api/product-promotions/'
+      const params = {'product__id__exact': this.productId}
+      
+      this.$http.get(apiUrl, params).then(response => {
+        this.promos = response.body.results
+        console.log(this.promos)
+      }, response => {
+        console.log('error')
+      })
+    },
 
   },
   computed: {

@@ -28,6 +28,9 @@ class Laboratory(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'[{self.code}] {self.name}'
 
 
 class Product(models.Model):
@@ -45,6 +48,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return f'[{self.code}] {self.name}'
+    
 
 class ProductDistributionChannel(models.Model):
     """Distribution channel price for an specific product."""
@@ -56,6 +62,9 @@ class ProductDistributionChannel(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'[{self.distribution_channel.name}] {self.product.name}'
 
 
 class ProductScale(models.Model):
@@ -71,6 +80,9 @@ class ProductScale(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.product.name} [{self.min_value} - {self.max_value}]'
 
 
 class ProductPromotion(models.Model):
@@ -86,6 +98,9 @@ class ProductPromotion(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.product_quantity} {self.product.name} + {self.child_product_quantity} {self.child_product.name}'
 
 
 class SpecialPrice(models.Model):
@@ -102,3 +117,6 @@ class SpecialPrice(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.product.name} - {self.client.name} ({self.discount})'

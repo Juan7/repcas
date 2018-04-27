@@ -13,3 +13,32 @@ class ProductViewSet(viewsets.ModelViewSet):
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
     queryset = models.Product.objects.all()
+
+    
+class ProductPromotionsViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = serializers.ProductPromotionSerializer
+
+    pagination_class = pagination.StandardResultsSetPagination
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
+    queryset = models.ProductPromotion.objects.all()
+    
+    filter_fields = {
+        'product__id': ['exact'],
+    }
+    
+
+class ProductScaleViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = serializers.ProductScaleSerializer
+
+    pagination_class = pagination.StandardResultsSetPagination
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
+    queryset = models.ProductScale.objects.all()
+    
+    filter_fields = {
+        'product__id': ['exact'],
+    }
+    
