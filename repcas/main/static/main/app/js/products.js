@@ -30,7 +30,7 @@ const ProductsView = Vue.component('ProductsView', {
         this.setCartData()
       }
     },
-      
+
     'filters.name__icontains': function () {
       this.filters.code__icontains = this.filters.name__icontains
       this.fetchData()
@@ -104,15 +104,15 @@ const ProductsView = Vue.component('ProductsView', {
       this.productId = product.id
       this.promos = []
       this.scales = []
-      
+
       this.fetchScales()
       this.fetchPromotions()
     },
-      
+
     fetchScales: function() {
       const apiUrl = '/inventory/api/product-scales/'
-      const params = {'params': {'product__id__exact': this.productId}}
-      
+      const params = {'params': {'product__id': this.productId}}
+
       this.$http.get(apiUrl, params).then(response => {
         this.scales = response.body.results
         console.log(this.scales)
@@ -123,8 +123,8 @@ const ProductsView = Vue.component('ProductsView', {
 
     fetchPromotions: function() {
       const apiUrl = '/inventory/api/product-promotions/'
-      const params = {'params': {'product__id__exact': this.productId}}
-      
+      const params = {'params': {'product__id': this.productId}}
+
       this.$http.get(apiUrl, params).then(response => {
         this.promos = response.body.results
         for (let promo of this.promos) {
@@ -135,7 +135,7 @@ const ProductsView = Vue.component('ProductsView', {
         console.log('error')
       })
     },
-      
+
     calculatePrice: function () {
       const apiUrl = `/inventory/api/check-product-price/${this.productId}`
       const params = {'params': {'quantity': this.newItem.quantity || 0 }}
@@ -144,7 +144,7 @@ const ProductsView = Vue.component('ProductsView', {
       }, response => {
         console.log('error')
       })
-    }, 
+    },
 
     setCartData: function () {
       let cartData = JSON.parse(localStorage.getItem('cart'))
