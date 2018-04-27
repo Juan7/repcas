@@ -88,7 +88,8 @@ class MakeOrder(APIView):
             'domain': domain,
             'protocol': 'https' if request.is_secure() else 'http',
             'products': products_data,
-            'total': total
+            'total': total,
+            'client': request.profile.client.name,
         }
 
         from_email = f'{site_name} Team <no-reply@{domain}>'
