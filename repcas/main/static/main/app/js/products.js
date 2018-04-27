@@ -8,7 +8,7 @@ const ProductsView = Vue.component('ProductsView', {
       cart: [],
       newItem: {
         name: '',
-        quantity: 1,
+        quantity: 0,
         price: 0
       },
       promos: [],
@@ -24,7 +24,11 @@ const ProductsView = Vue.component('ProductsView', {
         this.fetchData()
         this.setCartData()
       }
-    }
+    },
+
+    'newItem.quantity' () {
+      this.calculatePrice()
+    },
   },
 
   mounted: function () {
@@ -79,6 +83,7 @@ const ProductsView = Vue.component('ProductsView', {
     setNewItem: function (product) {
       this.newItem.price = product.price
       this.newItem.name = product.name
+      this.newItem.quantity = 1
       this.productId = product.id
       this.promos = []
       this.scales = []
@@ -105,11 +110,23 @@ const ProductsView = Vue.component('ProductsView', {
       
       this.$http.get(apiUrl, params).then(response => {
         this.promos = response.body.results
-        console.log(this.promos)
+        for (let promo of this.promos) {
+          promo.quantity = 0
+        }
       }, response => {
         console.log('error')
       })
     },
+      
+    calculatePrice: function () {
+      const apiUrl = `/inventory/api/check-product-price/${this.productId}`
+      const params = {'quantity': this.newItem.quantity}
+      this.$http.get(apiUrl, params).then(response => {
+        this.newItem.price = response.body.calculated_price
+      }, response => {
+        console.log('error')
+      })
+    }, 
 
     setCartData: function () {
       let cartData = JSON.parse(localStorage.getItem('cart'))

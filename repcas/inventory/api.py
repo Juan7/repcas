@@ -15,7 +15,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
 
     
-class ProductPromotionsViewSet(viewsets.ModelViewSet):
+class ProductPromotionViewSet(viewsets.ModelViewSet):
     
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = serializers.ProductPromotionSerializer
@@ -41,4 +41,14 @@ class ProductScaleViewSet(viewsets.ModelViewSet):
     filter_fields = {
         'product__id': ['exact'],
     }
-    
+
+
+class ProductPriceViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = serializers.ProductPriceSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
+    queryset = models.Product.objects.all()
+
+    # def retrieve(self, request, pk=None):
+    #     print(self.request.data)
+    #     return super().retrieve(request, pk)
