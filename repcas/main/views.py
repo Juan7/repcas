@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+from . import models
 
 
 def home(request):
@@ -10,7 +10,10 @@ def home(request):
 
 
 def promotions(request):
-    context = {}
+    promotions = models.WebPromotion.objects.filter(is_active=True).order_by('-created_at')
+    context = {
+        'promotions': promotions
+    }
     return render(request, 'main/promociones.html', context)
 
 

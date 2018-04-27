@@ -59,123 +59,29 @@
               PROMOCIONES
             </div>
             <br>
-            <div class="row position-relative">
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
+            {% for promotion in promotions %}
+              {% if forloop.counter|divisibleby:5 or forloop.first %}
+                <div class="row position-relative">
+              {% endif %}
+                <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
+                  <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
+                  <div class="">
+                    <strong>
+                      {{ promotion.title }}
+                    </strong>
+                  </div>
+                  <div class="mark">
+                    {{ promotion.description }}
+                  </div>
+                  <div class="price">
+                    S/. {{ promotion.price }}
+                  </div>
                 </div>
-                <div class="mark">
-                  COLGATE
+              {% if forloop.counter|divisibleby:4 or forloop.last %}
                 </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="row position-relative">
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-              <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                <div class="">
-                  <strong>
-                    Cepillo Triple Acción
-                  </strong>
-                </div>
-                <div class="mark">
-                  COLGATE
-                </div>
-                <div class="price">
-                  S/. 7.90 UN
-                </div>
-              </div>
-            </div>
+                <br>
+              {% endif %}
+            {% endfor %}
           </div>
         </main>
       </section>
