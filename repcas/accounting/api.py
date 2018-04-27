@@ -25,8 +25,11 @@ class InvoiceViewSet(viewsets.ModelViewSet):
         'client__name': ['icontains']
     }
 
+    def get_queryset(self):
+        client = self.request.profile.client
+        return models.Invoice.objects.filter(is_active=True, client=client)
+
     def filter_queryset(self, queryset):
-        print(self.request.query_params)
         if self.request.query_params.get('number__icontains'):
             query_params = copy(self.request.query_params)
             if query_params.get('is_payed'):
@@ -36,7 +39,6 @@ class InvoiceViewSet(viewsets.ModelViewSet):
             params = [Q(**{name: value})
                       for name, value in query_params.items()
                       if name != 'condition']
-            print(reduce(operator.or_, params))
 
             queryset = queryset.filter(reduce(operator.or_, params))
 
