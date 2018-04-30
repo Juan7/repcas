@@ -9,6 +9,7 @@ from rest_framework import permissions, response, status, viewsets, filters
 
 from main import pagination
 from . import models, serializers
+from .utils import utils
 
 
 class InvoiceViewSet(viewsets.ModelViewSet):
@@ -58,3 +59,14 @@ class QuotationViewSet(viewsets.ModelViewSet):
     filter_fields = {
         'number': ['icontains']
     }
+
+    def get_serializer_class(self):
+        pk = self.kwargs.get('pk')
+        if self.request.method == 'GET' and not pk:
+            return serializers.QuotationMinSerializer
+
+        return serializers.QuotationSerializer
+
+    def perform_create(self, serializer):
+        quotation = serializer.save()
+        utils.make_order(self.request, quotation)

@@ -28,7 +28,7 @@ class Laboratory(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'[{self.code}] {self.name}'
 
@@ -41,16 +41,16 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=4,
                                 validators=[MinValueValidator(Decimal('0.00'))])
     image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    
+
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'[{self.code}] {self.name}'
-    
+
 
 class ProductDistributionChannel(models.Model):
     """Distribution channel price for an specific product."""
@@ -62,7 +62,7 @@ class ProductDistributionChannel(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'[{self.distribution_channel.name}] {self.product.name}'
 
@@ -80,7 +80,7 @@ class ProductScale(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'{self.product.name} [{self.min_value} - {self.max_value}]'
 
@@ -98,7 +98,7 @@ class ProductPromotion(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'{self.product_quantity} {self.product.name} + {self.child_product_quantity} {self.child_product.name}'
 
@@ -117,6 +117,6 @@ class SpecialPrice(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return f'{self.product.name} - {self.client.name} ({self.discount})'

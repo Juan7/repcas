@@ -25,12 +25,19 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
 
 class QuotationItemSerializer(serializers.ModelSerializer):
+    product_display = serializers.SerializerMethodField()
 
     class Meta:
 
         model = models.QuotationItem
         fields = ('id', 'quotation', 'product', 'quantity',
-                  'price', 'total', 'is_active', 'created_at')
+                  'price', 'total', 'is_active', 'created_at', 'product_display')
+        extra_kwargs = {
+            'quotation': {'required': False}
+        }
+
+    def get_product_display(self, obj):
+        return obj.product.name
 
 
 class QuotationSerializer(serializers.ModelSerializer):
@@ -39,5 +46,32 @@ class QuotationSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = models.Quotation
-        fields = ('id', 'items', 'client', 'date', 'number', 'total',
+        fields = ('id', 'items', 'client', 'agent', 'date', 'number', 'total',
                   'state', 'is_active', 'created_at')
+
+        extra_kwargs = {
+            'client': {'required': False},
+            'number': {'required': False}
+        }
+
+    def create(self, validated_data):
+        items_data = validated_data.pop('items')
+        validated_data['client'] = self.context['request'].profile.client
+        quotation = models.Quotation.objects.create(**validated_data)
+
+        for item_data in items_data:
+            models.QuotationItem.objects.create(quotation=quotation, **item_data)
+
+        return quotation
+
+
+class QuotationMinSerializer(serializers.ModelSerializer):
+    agent_display = serializers.SerializerMethodField()
+
+    class Meta:
+
+        model = models.Quotation
+        fields = ('id', 'agent', 'agent_display', 'date', 'number', 'total')
+
+    def get_agent_display(self, obj):
+        return obj.agent.name

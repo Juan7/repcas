@@ -20,12 +20,12 @@ class ProductViewSet(viewsets.ModelViewSet):
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
     queryset = models.Product.objects.all()
-    
+
     filter_fields = {
         'name': ['icontains'],
         'code': ['icontains']
     }
-    
+
     def filter_queryset(self, queryset):
         print(self.request.query_params)
         if self.request.query_params.get('name__icontains'):
@@ -39,30 +39,30 @@ class ProductViewSet(viewsets.ModelViewSet):
             queryset = super().filter_queryset(queryset)
         return queryset
 
-    
+
 class ProductPromotionViewSet(viewsets.ModelViewSet):
-    
+
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = serializers.ProductPromotionSerializer
 
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
     queryset = models.ProductPromotion.objects.all()
-    
+
     filter_fields = {
         'product__id': ['exact'],
     }
-    
+
 
 class ProductScaleViewSet(viewsets.ModelViewSet):
-    
+
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = serializers.ProductScaleSerializer
 
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
     queryset = models.ProductScale.objects.all()
-    
+
     filter_fields = {
         'product__id': ['exact'],
     }

@@ -74,6 +74,10 @@ class Quotation(models.Model):
     def __str__(self):
         return self.number
 
+    def save(self, *args, **kwargs):
+        self.number = type(self).objects.count() + 1
+        super().save(*args, **kwargs)
+
 
 class QuotationItem(models.Model):
     quotation = models.ForeignKey(Quotation, related_name='items', on_delete=models.CASCADE)

@@ -89,6 +89,7 @@ const ProductsView = Vue.component('ProductsView', {
           name: validPromos[i].child_product.name,
           quantity: validPromos[i].quantity,
           code: validPromos[i].child_product.code,
+          product: validPromos[i].product.id,
           price: 0
         })
       }
@@ -97,7 +98,8 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     setNewItem: function (product) {
-      this.newItem.price = product.price
+      this.newItem.price = '...'
+      this.newItem.product = product.id
       this.newItem.name = product.name
       this.newItem.code = product.code
       this.newItem.quantity = 1
@@ -107,6 +109,7 @@ const ProductsView = Vue.component('ProductsView', {
 
       this.fetchScales()
       this.fetchPromotions()
+      this.calculatePrice()
     },
 
     fetchScales: function() {
@@ -157,6 +160,7 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     isValidPromoQuantity: function () {
+
       const promos = this.promos.filter(function (promo) { return promo.quantity > 0 })
 
       for (let i = 0; i < promos.length; i++) {
