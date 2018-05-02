@@ -87,7 +87,7 @@ const ProductsView = Vue.component('ProductsView', {
         console.log('validPromos', validPromos)
         this.cart.push({
           name: validPromos[i].child_product.name,
-          quantity: validPromos[i].quantity,
+          quantity: validPromos[i].quantity * validPromos[i].child_product_quantity,
           code: validPromos[i].child_product.code,
           product: validPromos[i].product.id,
           price: 0
