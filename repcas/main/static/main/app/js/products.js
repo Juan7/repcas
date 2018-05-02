@@ -10,10 +10,11 @@ const ProductsView = Vue.component('ProductsView', {
         name: '',
         quantity: 0,
         price: 0,
-        code: ''
+        code: '',
+        id: undefined
       },
-      promos: [],
       promoWarn: '',
+      promos: [],
       scales: [],
       filters: {
         'name__icontains': undefined,
@@ -68,7 +69,7 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     clearCartModal: function () {
-      this.newItem = { quantity: 1, price: 0, name: '', code: '' }
+      this.newItem = { quantity: 1, price: 0, name: '', code: '', id: undefined }
     },
 
     addToCart: function () {
@@ -84,13 +85,13 @@ const ProductsView = Vue.component('ProductsView', {
       })
 
       for (let i = 0; i < validPromos.length; i++) {
-        console.log('validPromos', validPromos)
         this.cart.push({
           name: validPromos[i].child_product.name,
           quantity: validPromos[i].quantity * validPromos[i].child_product_quantity,
           code: validPromos[i].child_product.code,
-          product: validPromos[i].product.id,
-          price: 0
+          product: validPromos[i].child_product.id,
+          price: 0,
+          parentId: this.newItem.id
         })
       }
       this.setCartData()
@@ -102,6 +103,7 @@ const ProductsView = Vue.component('ProductsView', {
       this.newItem.product = product.id
       this.newItem.name = product.name
       this.newItem.code = product.code
+      this.newItem.id = Date.now()
       this.newItem.quantity = 1
       this.productId = product.id
       this.promos = []
@@ -160,7 +162,6 @@ const ProductsView = Vue.component('ProductsView', {
     },
 
     isValidPromoQuantity: function () {
-
       const promos = this.promos.filter(function (promo) { return promo.quantity > 0 })
       let quantity = this.newItem.quantity
 
@@ -168,7 +169,7 @@ const ProductsView = Vue.component('ProductsView', {
         if ((promo.product_quantity * promo.quantity) > quantity) {
           return false
         }
-        quantity -= promo.product_quantity
+        quantity -= promo.product_quantity * promo.quantity
       }
       return true
     }

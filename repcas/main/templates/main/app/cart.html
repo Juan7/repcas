@@ -20,6 +20,7 @@
           <th>Código</th>
           <th>Cantidad</th>
           <th>Precio</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +29,90 @@
           <td>[[ product.code ]]</td>
           <td>[[ product.quantity ]]</td>
           <td>S/ [[ product.price ]]</td>
+          <td>
+            <button v-if="product.id" type="button" class="btn btn-primary"
+              data-toggle="modal" data-target="#cartModal"
+              @click="itemToEdit = product">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button v-if="product.id" type="button" class="btn btn-warn"
+              @click="deleteProduct(product.id)">
+              <i class="fa fa-close"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">[[ itemToEdit.name ]]</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row text-center">
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Cantidad</label>
+                <div class="col-sm-8">
+                  <input type="number" min="0" class="form-control form-control-sm"
+                    v-model="itemToEdit.quantity">
+                </div>
+              </div>
+            </div>
+            <div class="col-6"><strong>precio: S/ [[ itemToEdit.price ]]</strong></div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-4" v-show="scales.length">
+              <p>Escalas</p>
+              <table class="table">
+                <tr v-for="scale in scales">
+                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>[[ scale.discount_display ]]% de descuento</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-8" v-show="promos.length">
+              <p>Promociones</p>
+              <div class="alert alert-warning" role="alert" v-show="promoWarn" style="font-size: 12px">
+                <strong>Cantidades no válidas!</strong> verifique que las cantidades ingresadas sean coherentes con la cantidad del producto
+              </div>
+              <table class="table" id="promotion-table">
+                <thead>
+                  <tr>
+                    <th>Por la compra de</th>
+                    <th>Se Puede llevar</th>
+                    <th>A llevar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="promo in promos">
+                    <td>[[ promo.product_quantity ]] [[ promo.product.name ]]</td>
+                    <td>[[ promo.child_product_quantity ]] [[ promo.child_product.name ]]</td>
+                    <td>
+                      <input type="number" min="0" class="form-control form-control-sm" style="width: 100px"
+                        v-model="promo.quantity"
+                        :class="{ 'is-invalid': (promo.quantity * promo.product_quantity) > itemToEdit.quantity }">
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" @click="addToCart()">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
