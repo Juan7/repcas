@@ -18,10 +18,16 @@ class Invoice(models.Model):
         (CONFIRMED, 'Confirmado'),
     )
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now)
     number = models.CharField(max_length=254)
-    total = models.DecimalField(max_digits=10, decimal_places=4,
+    document_type = models.CharField(max_length=5, default='01')
+    date = models.DateTimeField(default=timezone.now)
+    due_date = models.DateTimeField(default=timezone.now)
+    total = models.DecimalField(max_digits=10, decimal_places=4, default=Decimal('0.00'),
                                 validators=[MinValueValidator(Decimal('0.00'))])
+    amount_payed = models.DecimalField(max_digits=10, decimal_places=4, default=Decimal('0.00'),
+                                validators=[MinValueValidator(Decimal('0.00'))])
+    unique_code = models.CharField(max_length=254, blank=True)
+    
     is_payed = models.BooleanField(default=False)
     state = models.IntegerField(choices=STATE_CHOICES, default=WAITING, blank=True)
 

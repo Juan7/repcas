@@ -16,12 +16,21 @@ class InvoiceItemSerializer(serializers.ModelSerializer):
 class InvoiceSerializer(serializers.ModelSerializer):
     items = InvoiceItemSerializer(many=True)
     client = ClientSerializer(many=False)
+    days = serializers.SerializerMethodField()
+    amount_pending = serializers.SerializerMethodField()
 
     class Meta:
 
         model = models.Invoice
         fields = ('id', 'items', 'client', 'date', 'number', 'total', 'is_payed',
-                  'state', 'is_active', 'created_at')
+                  'due_date', 'document_type', 'amount_payed', 'unique_code', 
+                  'amount_pending', 'state', 'is_active', 'created_at', 'days')
+        
+    def get_days(self, obj):
+        return (obj.date - obj.due_date).days
+    
+    def get_amount_pending(self, obj):
+        return obj.total - obj.amount_payed
 
 
 class QuotationItemSerializer(serializers.ModelSerializer):
