@@ -164,3 +164,5 @@ EMAIL_USE_TLS = True
 # 
 
 JOIN_EMAIL = os.environ.get('JOIN_EMAIL')
+
+AGENT_EMAIL = os.environ.get('AGENT_EMAIL', 'yoel.zalas@gmail.com')

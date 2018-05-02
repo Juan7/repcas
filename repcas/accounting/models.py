@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
-from accounts.models import Agent, Client
+from accounts.models import Client
 from inventory.models import Product
 
 
@@ -60,7 +60,6 @@ class Quotation(models.Model):
         (CONFIRMED, 'Confirmado'),
     )
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     number = models.CharField(max_length=254)
     total = models.DecimalField(max_digits=10, decimal_places=4,

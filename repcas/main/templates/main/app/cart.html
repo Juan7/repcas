@@ -4,13 +4,9 @@
     :to="{ name: 'products' }">< Regresar a productos</router-link>
 
   <h1 class="h2" style="margin-bottom: 1em">Carrito de pedidos</h1>
+  <p>Proveedor: <strong>{{ agent }}</strong></p>
 
   <div class="row">
-    <div class="col-6">
-      <select class="custom-select" v-model="agentId">
-        <option v-for="agent in agents" :value="agent.id">[[ agent.name ]] ([[ agent.email ]])</option>
-      </select>
-    </div>
     <div class="col-6">
       <button type="button" class="btn btn-primary" @click="makeOrder()" :disabled="makingOrder">Realizar pedido</button>
     </div>

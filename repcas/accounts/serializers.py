@@ -26,13 +26,3 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         model = models.Profile
         fields = ('id', 'user', 'client', 'phone', 'is_active')
-
-
-class AgentSerializer(serializers.ModelSerializer):
-    """Agent model serializer."""
-
-    class Meta:
-        """Agent serializer meta data."""
-
-        model = models.Agent
-        fields = ('id', 'name', 'client', 'address', 'email', 'phone', 'is_active')

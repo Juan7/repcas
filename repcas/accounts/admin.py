@@ -13,11 +13,6 @@ class ProfileAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.Agent)
-class AgentAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(models.DistributionChannel)
 class DistributionChannelAdmin(admin.ModelAdmin):
     pass

@@ -8,8 +8,6 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from accounts.models import Agent
-from django.shortcuts import get_object_or_404
 from django.conf import settings
 
 from .functions import set_cookie
@@ -66,39 +64,3 @@ def join(request):
         send_mail(subject, '', from_email, [to_email], fail_silently=True, html_message=message)
 
     return render(request, 'registration/join.html', context)
-
-
-class MakeOrder(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def post(self, request):
-
-        current_site = get_current_site(request)
-        site_name = current_site.name
-        domain = current_site.domain
-
-        agent = get_object_or_404(Agent, id=request.data.get('agent_id'))
-        products_data = request.data.get('products')
-        total = 0
-        for product in products_data:
-            total += float(product['price'])
-
-        context = {
-            'agent': agent,
-            'domain': domain,
-            'protocol': 'https' if request.is_secure() else 'http',
-            'products': products_data,
-            'total': total,
-            'client': request.profile.client.name,
-        }
-
-        from_email = f'{site_name} Team <no-reply@{domain}>'
-
-        to_email = agent.email
-        subject = 'Pedido'
-
-        template = loader.get_template('accounts/order_email.html')
-        message = template.render(context)
-
-        send_mail(subject, '', from_email, [to_email], fail_silently=True, html_message=message)
-        return Response()

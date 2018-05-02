@@ -46,7 +46,7 @@ class QuotationSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = models.Quotation
-        fields = ('id', 'items', 'client', 'agent', 'date', 'number', 'total',
+        fields = ('id', 'items', 'client', 'date', 'number', 'total',
                   'state', 'is_active', 'created_at')
 
         extra_kwargs = {
@@ -66,12 +66,8 @@ class QuotationSerializer(serializers.ModelSerializer):
 
 
 class QuotationMinSerializer(serializers.ModelSerializer):
-    agent_display = serializers.SerializerMethodField()
 
     class Meta:
 
         model = models.Quotation
-        fields = ('id', 'agent', 'agent_display', 'date', 'number', 'total')
-
-    def get_agent_display(self, obj):
-        return obj.agent.name
+        fields = ('id', 'date', 'number', 'total')

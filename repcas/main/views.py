@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
 from . import models
 
 
@@ -19,4 +19,5 @@ def promotions(request):
 
 @login_required
 def app(request):
-    return render(request, 'main/app/app.html', locals())
+    context = {'agent': settings.AGENT_EMAIL}
+    return render(request, 'main/app/app.html', context)

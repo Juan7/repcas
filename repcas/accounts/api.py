@@ -32,23 +32,3 @@ class ProfileViewSet(viewsets.ModelViewSet):
     filter_fields = {
         'user__username': ['icontains']
     }
-
-
-class AgentViewSet(viewsets.ModelViewSet):
-
-    permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = serializers.AgentSerializer
-
-    pagination_class = pagination.StandardResultsSetPagination
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter)
-
-    filter_fields = {
-        'name': ['icontains'],
-    }
-
-    def get_queryset(self):
-        queryset = models.Agent.objects.select_related(
-            'client'
-        ).filter(
-            client=self.request.profile.client)
-        return queryset

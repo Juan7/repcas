@@ -51,19 +51,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} ({self.client.name})'
-
-
-class Agent(models.Model):
-    name = models.CharField(max_length=254)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-
-    address = models.CharField(max_length=254)
-    email = models.EmailField(max_length=254)
-    phone = models.CharField(max_length=20, null=True, blank=True)
-
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f'{self.name} ({self.client.name})'

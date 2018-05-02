@@ -10,7 +10,6 @@
       <thead>
         <tr>
           <th>Número</th>
-          <th>Agente</th>
           <th>Fecha</th>
           <th>Total</th>
           <th>Detalles</th>
@@ -19,7 +18,6 @@
       <tbody>
         <tr v-for="quo in quotations">
           <td>[[ quo.number ]]</td>
-          <td>[[ quo.agent_display ]]</td>
           <td>[[ quo.date | date ]]</td>
           <td>S/ [[ quo.total ]]</td>
           <td style="width: 250px">

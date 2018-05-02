@@ -8,10 +8,8 @@ app_name = 'accounts'
 router = DefaultRouter()
 router.register('client', api.ClientViewSet, base_name='api_client')
 router.register('profile', api.ProfileViewSet, base_name='api_profile')
-router.register('agent', api.AgentViewSet, base_name='api_agent')
 
 apipatterns = router.urls + [
-    path('make-order/', views.MakeOrder.as_view())
 ]
 
 urlpatterns = [
