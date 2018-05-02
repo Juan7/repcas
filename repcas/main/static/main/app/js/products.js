@@ -162,11 +162,13 @@ const ProductsView = Vue.component('ProductsView', {
     isValidPromoQuantity: function () {
 
       const promos = this.promos.filter(function (promo) { return promo.quantity > 0 })
+      let quantity = this.newItem.quantity
 
-      for (let i = 0; i < promos.length; i++) {
-        if ((promos[i].product_quantity * promos[i].quantity) > this.newItem.quantity) {
+      for (let promo of promos) {
+        if ((promo.product_quantity * promo.quantity) > quantity) {
           return false
         }
+        quantity -= promo.product_quantity
       }
       return true
     }
