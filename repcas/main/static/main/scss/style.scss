@@ -47,25 +47,13 @@ header {
   z-index: 9;
   -webkit-transition: .2s;
   transition: .4s;
-
-  background: rgba(35,31,32,.8);
-  background: -moz-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(35,31,32,.8)), color-stop(100%, rgba(255,255,255,0)));
-  background: -webkit-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
-  background: -o-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
-  background: -ms-linear-gradient(top, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
-  background: linear-gradient(to bottom, rgba(35,31,32,.8) 0%, rgba(255,255,255,0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff', GradientType=0 );
-}
-
-.header-scroll {
   background: #fff;
 
   nav {
     margin-top: 5px;
 
     a {
-      color: $dark-gray;
+      color: $dark-gray !important;
 
        &:hover {
          color: $dark-gray;

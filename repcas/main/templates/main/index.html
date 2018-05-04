@@ -58,7 +58,7 @@
     </header>
     <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
       <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" volume="50"/>
-        <source src="/static/main/video/video.mp4" type="video/mp4" />
+        <source src="{% static 'main/video/video.mp4' %}" type="video/mp4" />
       </video/>
       <figure>
         <div class="slide-custom">
@@ -119,7 +119,7 @@
                    <img src="/static/main/img/nosotros-img.png" alt="">
                  </div>
                  <div>
-                   <img src="/static/main/img/nosotros-img.png" alt="">
+                   <img src="/static/main/img/nosotros-img-2.png" alt="">
                  </div>
               </div>
             </div>
@@ -160,6 +160,10 @@
           <p>
             Representaciones Castillo mantiene alianzas estratégicas con empresas reconocidas a nivel nacional que han con ando en nuestro Grupo para desarrollar y comercializar sus marcas en el país.
           </p>
+          <br>
+          <div class="text-center">
+            <img src="{% static 'main/img/partners-img-1.png' %}" alt="" height="150">
+          </div>
           <section class="regular slider" style="padding-top: 1rem; padding-bottom: 5rem;">
             <div>
               <img src="/static/main/img/partners/1.png">
@@ -229,8 +233,8 @@
         </p>
       </div>
       <div class="text-center" style="padding: 3rem; color: #7a152e; font-size: 1.2rem;">
-        TENEMOS UN AGENTE DE VENTAS EN CADA CIUDAD, <br>
-        ESPERANDO A ATENDERTE
+        TENEMOS UN REPRESENTANTE DE VENTAS EN CADA LOCALIDAD <br>
+        PARA SU SERVICIO
       </div>
       <div class="" style="padding: 0 3rem;">
         <img src="/static/main/img/cities.png" alt="" width="100%;">
