@@ -63,7 +63,7 @@
             <a class="button-3" href="/media/{{ pdf_promotion.pdf_file }}">Descarga todas nuestras promociones</a>
             <br>
             {% for promotion in promotions %}
-              <img src="/media/{{ promotion.image.url }}" alt="">
+              <img src="{{ promotion.image.url }}" alt="">
               <br>
             {% endfor %}
             <br>
