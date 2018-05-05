@@ -203,6 +203,7 @@
         <div id="map"></div>
         <div class="contact-form">
           <form action="{% url 'main:contact_us' %}" method="POST">
+            {% csrf_token %}
             <h1>
               LLene sus datos para contactarnos con usted.
             </h1>
