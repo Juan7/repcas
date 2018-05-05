@@ -88,7 +88,7 @@
               <p>Escalas</p>
               <table class="table">
                 <tr v-for="scale in scales">
-                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>S/ [[ scale.calculated_price ]]</td>
+                  <td>[[ scale.min_value ]] - [[ scale.max_value === 0 ? 'a más' : scale.max_value ]]</td><td>S/ [[ scale.calculated_price ]]</td>
                 </tr>
               </table>
             </div>
