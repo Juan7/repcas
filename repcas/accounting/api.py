@@ -3,10 +3,13 @@ import json
 import operator
 from copy import copy
 from functools import reduce
+from weasyprint import CSS, HTML
 
+from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
+from django.http import HttpResponse
 from rest_framework import permissions, response, status, viewsets, filters
-
+from django.template.loader import render_to_string
 from main import pagination
 from . import models, serializers
 from .utils import utils
@@ -23,7 +26,8 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     filter_fields = {
         'is_payed': ['exact'],
         'number': ['icontains'],
-        'client__name': ['icontains']
+        'client__name': ['icontains'],
+        'date': ['gte', 'lte']
     }
 
     def get_queryset(self):
@@ -70,3 +74,23 @@ class QuotationViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         quotation = serializer.save()
         utils.make_order(self.request, quotation)
+
+
+class PdfReportView(InvoiceViewSet):
+    pdf_template = 'accounting/invoices-report.html'
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset()).filter(is_active=True)
+        print(queryset)
+
+        html_string = render_to_string(self.pdf_template, {})
+        html = HTML(string=html_string)
+        html.write_pdf(target='/tmp/mypdf.pdf',
+                       stylesheets=[CSS(string='@page { size: A4; margin: 0.5cm }')])
+        fs = FileSystemStorage('/tmp')
+        filename = 'Ventas.pdf'
+
+        with fs.open('mypdf.pdf') as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            return response

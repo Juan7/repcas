@@ -42,6 +42,33 @@ const InvoicesView = Vue.component('InvoicesView', {
         console.log('error')
         // error callback
       })
+    },
+
+    showReport: function () {
+      const parsedFilters = $.extend({}, this.filters)
+      parsedFilters.date__gte = new Date()
+
+      const startDate = moment(parsedFilters.date__gte, 'YYYY-MM-DD').toDate()
+      parsedFilters.date__gte = moment(startDate).subtract(60, 'days').toISOString()
+
+      const apiUrl = '/accounting/api/invoices-report/'
+      const params = {
+        params: parsedFilters
+      }
+
+      const url = apiUrl + this.objectToQuerystring(params.params)
+      console.log(url)
+      window.open(url, 'Download')
+    },
+
+    objectToQuerystring (obj) {
+      return Object.keys(obj).reduce((str, key, i) => {
+        var delimiter, val
+        delimiter = (i === 0) ? '?' : '&'
+        key = encodeURIComponent(key)
+        val = encodeURIComponent(obj[key])
+        return [str, delimiter, key, '=', val].join('')
+      }, '')
     }
   }
 })
