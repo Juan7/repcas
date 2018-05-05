@@ -32,7 +32,7 @@ class InvoiceViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         client = self.request.profile.client
-        return models.Invoice.objects.filter(is_active=True, client=client)
+        return models.Invoice.objects.filter(is_active=True, client=client).order_by('due_date', 'number')
 
     def filter_queryset(self, queryset):
         if self.request.query_params.get('number__icontains'):

@@ -5,7 +5,7 @@ from . import models
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['name']
 
 
 @admin.register(models.Laboratory)
