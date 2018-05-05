@@ -4,6 +4,37 @@
 	<title></title>
 </head>
 <body>
-invooos
+<h2>Desde el {{ start_date }}</h2>
+<table>
+  <thead>
+    <tr>
+      <th>T Doc</th>
+      <th>Documento</th>
+      <th>Fec Doc</th>
+      <th>Fec Ven</th>
+      <th>Importe</th>
+      <th>Dias</th>
+      <th>A Cuenta</th>
+      <th>Saldo</th>
+      <th>Nro Unico</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for invoice in invoices %}
+    <tr v-for="invoice in invoices">
+      <td>{{ invoice.document_type }}</td>
+      <td>{{ invoice.number }}</td>
+      <td>{{ invoice.date|date:"SHORT_DATE_FORMAT" }}</td>
+      <td>{{ invoice.due_date|date:"SHORT_DATE_FORMAT" }}</td>
+      <td>S/ {{ invoice.total|floatformat:2 }}</td>
+      <td>{{ invoice.days }}</td>
+      <td>S/ {{ invoice.amount_payed|floatformat:2 }}</td>
+      <td>S/ {{ invoice.amount_pending|floatformat:2 }}</td>
+      <td>{{ invoice.unique_code }}</td>
+    </tr>
+  	{% endfor %}
+  </tbody>
+</table>
+
 </body>
 </html>

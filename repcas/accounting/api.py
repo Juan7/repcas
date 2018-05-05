@@ -81,14 +81,18 @@ class PdfReportView(InvoiceViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset()).filter(is_active=True)
-        print(queryset)
+        start_date = self.request.query_params.get('date__gte')[:10]
+        context = {
+            'invoices': queryset,
+            'start_date': start_date
+        }
 
-        html_string = render_to_string(self.pdf_template, {})
+        html_string = render_to_string(self.pdf_template, context)
         html = HTML(string=html_string)
         html.write_pdf(target='/tmp/mypdf.pdf',
                        stylesheets=[CSS(string='@page { size: A4; margin: 0.5cm }')])
         fs = FileSystemStorage('/tmp')
-        filename = 'Ventas.pdf'
+        filename = 'estados de cuenta.pdf'
 
         with fs.open('mypdf.pdf') as pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
