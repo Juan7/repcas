@@ -1,6 +1,7 @@
 const InvoicesView = Vue.component('InvoicesView', {
   template: '#invoices-view',
   delimiters: ['[[', ']]'],
+  mixins: [paginationMixin],
   data: function () {
     return {
       invoices: [],
@@ -25,15 +26,17 @@ const InvoicesView = Vue.component('InvoicesView', {
     this.fetchData()
   },
   methods: {
-    fetchData: function () { _.debounce(this.fetchInvoices, 500)() },
+    fetchData: function () { _.debounce(this.fetchInvoices, 200)() },
 
     fetchInvoices: function () {
       const apiUrl = '/accounting/api/invoices/'
+      this.filters.page = this.pagination.page
 
       const params = { params: this.filters }
 
       this.$http.get(apiUrl, params).then(response => {
         this.invoices = response.body.results;
+        this.setPagination(response)
         console.log(this.invoices)
       }, response => {
         console.log('error')

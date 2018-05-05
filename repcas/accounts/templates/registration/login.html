@@ -68,7 +68,7 @@
             ACCESO DE USUARIO REGISTRADO
           </p>
           <br>
-          <form method="post" action="{% url 'login' %}">
+          <form method="post" action="{% url 'login' %}" id="loginForm">
             {% csrf_token %}
             {% if form.non_field_errors %}
               {% for error in form.non_field_errors %}
@@ -92,13 +92,19 @@
               </div>
             </div>
             <br>
-            <input type="submit" name="" value="Ingresar" class="btn-2"><br>
+            <input type="submit" name="" value="Ingresar al sistema" class="btn-2"><br>
             <a href="{% url 'accounts:join' %}"
               style="color: #ededed;
               padding: 1em;
-              display: inline-block;">Unirse</a>
+              display: inline-block;">¿No tiene una cuenta? Solicite acceso al sistema</a>
           </form>
         </div>
       </main>
+      <script>
+        $('#loginForm').submit(function() {
+          localStorage.setItem('cart', JSON.stringify([]))
+          return true
+        })
+      </script>
   </body>
 </html>

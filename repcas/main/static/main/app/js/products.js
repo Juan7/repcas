@@ -1,6 +1,7 @@
 const ProductsView = Vue.component('ProductsView', {
   template: '#products-view',
   delimiters: ['[[', ']]'],
+  mixins: [paginationMixin],
   data: function () {
     return {
       products: [],
@@ -51,14 +52,16 @@ const ProductsView = Vue.component('ProductsView', {
     $('#cartModal').on('hidden.bs.modal', function () { _this.clearCartModal() })
   },
   methods: {
-  	fetchData: function () { _.debounce(this.fetchProducts, 500)() },
+  	fetchData: function () { _.debounce(this.fetchProducts, 200)() },
 
     fetchProducts: function () {
       const apiUrl = '/inventory/api/products/'
+      this.filters.page = this.pagination.page
 
       const params = { params: this.filters }
       this.$http.get(apiUrl, params).then(response => {
         this.products = response.body.results;
+        this.setPagination(response)
       }, response => {
         console.log('error')
       })
@@ -100,6 +103,7 @@ const ProductsView = Vue.component('ProductsView', {
 
     setNewItem: function (product) {
       this.newItem.price = '...'
+      this.newItem.unit_price = product.price
       this.newItem.product = product.id
       this.newItem.name = product.name
       this.newItem.code = product.code
@@ -120,7 +124,6 @@ const ProductsView = Vue.component('ProductsView', {
 
       this.$http.get(apiUrl, params).then(response => {
         this.scales = response.body.results
-        console.log(this.scales)
       }, response => {
         console.log('error')
       })
