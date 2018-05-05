@@ -433,16 +433,16 @@
     <script src="/static/main/js/hammer.min.js"></script>
     <script src="/static/main/js/better-simple-slideshow.min.js"></script>
     <script>
-    // $(window).scroll(function() {
-    //   var scroll = $(window).scrollTop();
-    //
-    //   if (scroll >= 76) {
-    //     $("header").addClass("header-scroll");
-    //
-    //   } else {
-    //     $("header").removeClass("header-scroll");
-    //   }
-    // });
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 76) {
+        $("header").addClass("header-scroll-2");
+
+      } else {
+        $("header").removeClass("header-scroll-2");
+      }
+    });
 
     $(document).on('ready', function() {
       $(".regular").slick({
