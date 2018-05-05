@@ -345,3 +345,11 @@ section {
   height: 100% !important;
   width: 100% !important;
 }
+
+.input-error {
+  background: #fff;
+  color: $primary-color;
+  padding: 15px;
+  margin-bottom: 26px;
+  border-radius: 5px;
+}
