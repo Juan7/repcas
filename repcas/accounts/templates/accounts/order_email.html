@@ -19,8 +19,8 @@
   <tbody>
   	{% for product in products %}
     <tr>
-      <td>{{ product.name }}</td>
-      <td>{{ product.code }}</td>
+      <td>{{ product.product.name }}</td>
+      <td>{{ product.product.code }}</td>
       <td>{{ product.quantity }}</td>
       <td>S/ {{ product.price|floatformat:2 }}</td>
     </tr>
