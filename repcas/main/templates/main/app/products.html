@@ -6,7 +6,7 @@
   <br><br>
 
   <div>
-    <input type="search" class="form-control ds-input" id="search-input" placeholder="Buscar nombre o código..." v-model="filters.name__icontains">
+    <input type="search" class="form-control ds-input" id="search-input" placeholder="Buscar por nombre o código" v-model="filters.name__icontains">
   </div>
 
   <div class="table-responsive">
@@ -25,7 +25,7 @@
           <td>[[ product.name ]]</td>
           <td>[[ product.code ]]</td>
           <td>[[ product.quantity ]]</td>
-          <td>S/ [[ product.price ]]</td>
+          <td>S/ [[ product.calculated_price ]]</td>
           <td style="width: 250px">
 						<div class="input-group">
 						  <div class="input-group-append">
@@ -71,7 +71,7 @@
             <div class="col-6" style="line-height: 1em;font-weight: bold;">
               <table>
                 <tr>
-                  <td class="text-left">precio: </td>
+                  <td class="text-left">Precio total: </td>
                   <td class="text-right">S/ [[ newItem.price ]]</td>
                 </tr>
                 <tr>
@@ -88,7 +88,7 @@
               <p>Escalas</p>
               <table class="table">
                 <tr v-for="scale in scales">
-                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>[[ scale.discount_display ]]% de descuento</td>
+                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>S/ [[ scale.calculated_price ]]</td>
                 </tr>
               </table>
             </div>

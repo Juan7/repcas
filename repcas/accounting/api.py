@@ -33,6 +33,7 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     def filter_queryset(self, queryset):
         if self.request.query_params.get('number__icontains'):
             query_params = copy(self.request.query_params)
+            query_params.pop('page')
             if query_params.get('is_payed'):
                 queryset = queryset.filter(
                     is_payed=json.loads(query_params.get('is_payed')))

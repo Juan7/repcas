@@ -148,7 +148,8 @@ const ProductsView = Vue.component('ProductsView', {
       const apiUrl = `/inventory/api/check-product-price/${this.productId}`
       const params = {'params': {'quantity': this.newItem.quantity || 0 }}
       this.$http.get(apiUrl, params).then(response => {
-        this.newItem.price = response.body.calculated_price
+        this.newItem.price = response.body.calculated_price.toFixed(4)
+        this.newItem.unit_price = response.body.calculated_unit_price.toFixed(4)
       }, response => {
         console.log('error')
       })
