@@ -1,6 +1,9 @@
 import os
 import uuid
 
+from decimal import Decimal
+
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -25,10 +28,14 @@ class Client(models.Model):
     name = models.CharField(max_length=254)
     image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     ruc = models.CharField(max_length=11)
+    code = models.CharField(max_length=11, blank=True, null=True)
 
     address = models.CharField(max_length=254)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=20, null=True, blank=True)
+    credit_days = models.IntegerField(default=0)
+    credit_line = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'),
+                                   validators=[MinValueValidator(Decimal('0.00'))])
     
     distribution_channel = models.ForeignKey(DistributionChannel, on_delete=models.CASCADE)
 

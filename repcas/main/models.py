@@ -33,3 +33,18 @@ class WebPromotion(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+def get_pdf_file_path(instance, filename):
+    """Get a random filename to avoid override on server."""
+    ext = filename.split('.')[-1]
+    filename = '%s.%s' % (uuid.uuid4(), ext)
+    return os.path.join('web/pdf', filename)
+    
+    
+class WebPdfPromotion(models.Model):
+    name = models.CharField(max_length=254)
+    pdf_file = models.FileField(upload_to=get_pdf_file_path, blank=True, null=True)
+    
+    def __str__(self):
+        return f'{self.name}'

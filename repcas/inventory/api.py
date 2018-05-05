@@ -27,9 +27,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     }
 
     def filter_queryset(self, queryset):
-        print(self.request.query_params)
         if self.request.query_params.get('name__icontains'):
             query_params = copy(self.request.query_params)
+            query_params.pop('page')
             params = [Q(**{name: value})
                       for name, value in query_params.items()
                       if name != 'condition']
@@ -66,6 +66,10 @@ class ProductScaleViewSet(viewsets.ModelViewSet):
     filter_fields = {
         'product__id': ['exact'],
     }
+    
+    def get_queryset(self):
+        distribution_channel = self.request.profile.client.distribution_channel
+        return models.ProductScale.objects.filter(is_active=True, distribution_channel=distribution_channel)        
 
 
 class ProductPriceViewSet(viewsets.ModelViewSet):

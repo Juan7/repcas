@@ -66,7 +66,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-6"><strong>precio: S/ [[ itemToEdit.price ]]</strong></div>
+            <div class="col-6" style="line-height: 1em;font-weight: bold;">
+              <table>
+                <tr>
+                  <td class="text-left">Precio total: </td>
+                  <td class="text-right">S/ [[ itemToEdit.price ]]</td>
+                </tr>
+                <tr>
+                  <td class="text-left">Precio unitario: </td>
+                  <td class="text-right">S/ [[ itemToEdit.unit_price ]]</td>
+                </tr>
+              </table>
+            </div>
           </div>
           <br>
 
@@ -75,7 +86,7 @@
               <p>Escalas</p>
               <table class="table">
                 <tr v-for="scale in scales">
-                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>[[ scale.discount_display ]]% de descuento</td>
+                  <td>[[ scale.min_value ]] - [[ scale.max_value ]]</td><td>S/ [[ scale.calculated_price ]]</td>
                 </tr>
               </table>
             </div>

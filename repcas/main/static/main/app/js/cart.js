@@ -109,7 +109,8 @@ const CartView = Vue.component('CartView', {
       const apiUrl = `/inventory/api/check-product-price/${this.itemToEdit.product}`
       const params = {'params': {'quantity': this.itemToEdit.quantity || 0 }}
       this.$http.get(apiUrl, params).then(response => {
-        this.itemToEdit.price = response.body.calculated_price
+        this.itemToEdit.price = response.body.calculated_price.toFixed(4)
+        this.itemToEdit.unit_price = response.body.calculated_unit_price.toFixed(4)
       }, response => {
         console.log('error')
       })
