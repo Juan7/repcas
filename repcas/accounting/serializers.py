@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from django.utils import timezone
 from . import models
 from accounts.serializers import ClientSerializer
 
@@ -25,10 +25,10 @@ class InvoiceSerializer(serializers.ModelSerializer):
         fields = ('id', 'items', 'client', 'date', 'number', 'total', 'is_payed',
                   'due_date', 'document_type', 'amount_payed', 'unique_code', 
                   'amount_pending', 'state', 'is_active', 'created_at', 'days')
-        
+
     def get_days(self, obj):
-        return (obj.date - obj.due_date).days
-    
+        return (timezone.now() - obj.due_date).days
+
     def get_amount_pending(self, obj):
         return obj.total - obj.amount_payed
 
