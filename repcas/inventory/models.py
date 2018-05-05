@@ -37,9 +37,10 @@ class Laboratory(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=254)
     code = models.CharField(max_length=254)
+    unit = models.CharField(max_length=10, blank=True, null=True)
     quantity = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'),
                                    validators=[MinValueValidator(Decimal('0.00'))])
-    price = models.DecimalField(max_digits=10, decimal_places=4,
+    price = models.DecimalField(max_digits=10, decimal_places=4, default=Decimal('0.00'),
                                 validators=[MinValueValidator(Decimal('0.00'))])
     image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
@@ -90,6 +91,7 @@ class ProductScale(models.Model):
     """Scale of products amount that has an special discount."""
     
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    distribution_channel = models.ForeignKey(DistributionChannel, on_delete=models.CASCADE, blank=True, null=True)
     min_value = models.IntegerField(default=1)
     max_value = models.IntegerField(default=1)
     start_date = models.DateTimeField(default=timezone.now)

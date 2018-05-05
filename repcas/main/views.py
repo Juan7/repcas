@@ -26,7 +26,15 @@ def app(request):
 
 def update(request):
 #    result = functions.update_distribution_channel()
-    result = functions.update_laboratory()
+#    result = functions.update_laboratory()
+#    result = functions.update_clients()
+#    result = functions.update_invoices()
+#    result = functions.update_products()
+#    result = functions.update_distribution_channel_price()
+#    result = functions.update_promotions()
+#    result = functions.update_scales_price()
+#    result = functions.update_special_finantial_discount()
+    result = functions.update_special_price()
     context = {
         'result': result
     }
