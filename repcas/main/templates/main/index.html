@@ -57,8 +57,10 @@
       </div>
     </header>
     <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
-      <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" volume="50"/>
+      <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" volume="50" poster="{% static 'main/video/poster.jpg' %}"/>
+        <source src="{% static 'main/video/video.webm' %}" type="video/webm; codecs=vp8,vorbis">
         <source src="{% static 'main/video/video.mp4' %}" type="video/mp4" />
+        <img src="{% static 'main/video/poster.jpg' %}">
       </video/>
       <figure>
         <div class="slide-custom">
@@ -162,7 +164,7 @@
           </p>
           <br>
           <div class="text-center">
-            <img src="{% static 'main/img/partners-img-1.png' %}" alt="" height="150">
+            <img src="{% static 'main/img/partners-img-1.png' %}" alt="" height="250">
           </div>
           <section class="regular slider" style="padding-top: 1rem; padding-bottom: 5rem;">
             <div>
