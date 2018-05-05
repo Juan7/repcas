@@ -580,14 +580,6 @@
 <body>
 <h1>Estados de cuenta</h1>
 <h3>Desde el {{ start_date }}</h3>
-
-<div style="background-color: #dd2246; color: #ffffff; padding: 5px 10px; width: 100%;">
-  Estados de cuenta
-</div>
-<h1 class="text-center" style="font-size: 3rem;">
-  Desde el {{ start_date }}
-</h1>
-
 <h4>Datos del cliente</h4>
 <table class="table table-bordered table-striped">
 	<tr>
@@ -624,7 +616,7 @@
       <td>S/ {{ invoice.total|floatformat:2 }}</td>
       <td>{{ invoice.days }}</td>
       <td>S/ {{ invoice.amount_payed|floatformat:2 }}</td>
-      <td>S/ {{ invoice.amount_pending|floatformat:2 }}</td>
+      <td>S/ {{ invoice.amount_pending|default_if_none:"0"|floatformat:2 }}</td>
       <td>{{ invoice.unique_code }}</td>
     </tr>
   	{% endfor %}

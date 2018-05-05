@@ -84,6 +84,7 @@ class PdfReportView(InvoiceViewSet):
         queryset = self.filter_queryset(self.get_queryset()).filter(is_active=True)
         start_date = self.request.query_params.get('date__gte')[:10]
         context = {
+            'client': self.request.profile.client,
             'invoices': queryset,
             'start_date': start_date
         }
