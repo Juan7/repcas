@@ -62,32 +62,11 @@
             </div>
             <a class="button-3" href="/media/{{ pdf_promotion.pdf_file }}">Descarga todas nuestras promociones</a>
             <br>
-            <img src="{% static 'main/img/promo-ej.png' %}" alt="">
-            <br>
-            <br>
             {% for promotion in promotions %}
-              {% if forloop.counter|divisibleby:5 or forloop.first %}
-                <div class="row position-relative">
-              {% endif %}
-                <div class="col-3 text-center" style="background-color: #FFFFFF; font-size: 120%;">
-                  <img src="/static/main/img/promociones/promocion-1.png" alt="" width="150">
-                  <div class="">
-                    <strong>
-                      {{ promotion.title }}
-                    </strong>
-                  </div>
-                  <div class="mark">
-                    {{ promotion.description }}
-                  </div>
-                  <div class="price">
-                    S/. {{ promotion.price }}
-                  </div>
-                </div>
-              {% if forloop.counter|divisibleby:4 or forloop.last %}
-                </div>
-                <br>
-              {% endif %}
+              <img src="/media/{{ promotion.image.url }}" alt="">
+              <br>
             {% endfor %}
+            <br>
           </div>
         </main>
       </section>
