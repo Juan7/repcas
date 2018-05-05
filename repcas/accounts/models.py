@@ -25,6 +25,7 @@ class Client(models.Model):
     name = models.CharField(max_length=254)
     image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     ruc = models.CharField(max_length=11)
+    code = models.CharField(max_length=11, blank=True, null=True)
 
     address = models.CharField(max_length=254)
     email = models.EmailField(max_length=254)

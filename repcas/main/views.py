@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from . import functions
 from . import models
 
 
@@ -21,3 +22,12 @@ def promotions(request):
 def app(request):
     context = {'agent': settings.AGENT_EMAIL}
     return render(request, 'main/app/app.html', context)
+
+
+def update(request):
+#    result = functions.update_distribution_channel()
+    result = functions.update_laboratory()
+    context = {
+        'result': result
+    }
+    return render(request, 'main/update.html', context)
