@@ -38,6 +38,13 @@
         </tr>
       </tbody>
     </table>
+    <nav aria-label="Page navigation example" style="float: right;">
+      <ul class="pagination">
+        <li class="page-item" v-for="page in pagination.numbers" :class="{ active: page === pagination.page }">
+          <a class="page-link" href="javascript:void(0)" @click="pagination.page = page">[[ page ]]</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
   <!-- Modal -->
@@ -61,7 +68,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-6"><strong>precio: S/ [[ newItem.price ]]</strong></div>
+            <div class="col-6" style="line-height: 1em;font-weight: bold;">
+              <table>
+                <tr>
+                  <td class="text-left">precio: </td>
+                  <td class="text-right">S/ [[ newItem.price ]]</td>
+                </tr>
+                <tr>
+                  <td class="text-left">Precio unitario: </td>
+                  <td class="text-right">S/ [[ newItem.unit_price ]]</td>
+                </tr>
+              </table>
+            </div>
           </div>
           <br>
 

@@ -68,7 +68,7 @@
             ACCESO DE USUARIO REGISTRADO
           </p>
           <br>
-          <form method="post" action="{% url 'login' %}">
+          <form method="post" action="{% url 'login' %}" id="loginForm">
             {% csrf_token %}
             {% if form.non_field_errors %}
               {% for error in form.non_field_errors %}
@@ -100,5 +100,11 @@
           </form>
         </div>
       </main>
+      <script>
+        $('#loginForm').submit(function() {
+          localStorage.setItem('cart', JSON.stringify([]))
+          return true
+        })
+      </script>
   </body>
 </html>
