@@ -47,16 +47,23 @@ header {
   z-index: 9;
   -webkit-transition: .2s;
   transition: .4s;
-  background: #fff;
+  background: rgba(255,255,255,1);
+background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(122,21,46,1) 54%, rgba(122,21,46,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(36%, rgba(255,255,255,1)), color-stop(54%, rgba(122,21,46,1)), color-stop(100%, rgba(122,21,46,1)));
+background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(122,21,46,1) 54%, rgba(122,21,46,1) 100%);
+background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(122,21,46,1) 54%, rgba(122,21,46,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(122,21,46,1) 54%, rgba(122,21,46,1) 100%);
+background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(122,21,46,1) 54%, rgba(122,21,46,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#7a152e', GradientType=1 );
 
   nav {
     margin-top: 5px;
 
     a {
-      color: $dark-gray !important;
+      color: #fff !important;
 
        &:hover {
-         color: $dark-gray;
+         color: #fff;
        }
     }
   }
