@@ -27,7 +27,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
                   'amount_pending', 'state', 'is_active', 'created_at', 'days')
 
     def get_days(self, obj):
-        return (timezone.now() - obj.due_date).days
+        return (obj.due_date - timezone.now()).days
 
     def get_amount_pending(self, obj):
         return obj.total - obj.amount_payed
