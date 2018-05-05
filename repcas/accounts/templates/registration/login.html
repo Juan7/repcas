@@ -105,6 +105,17 @@
           localStorage.setItem('cart', JSON.stringify([]))
           return true
         })
+
+        $(window).scroll(function() {
+          var scroll = $(window).scrollTop();
+
+          if (scroll >= 76) {
+            $("header").addClass("header-scroll-2");
+
+          } else {
+            $("header").removeClass("header-scroll-2");
+          }
+        });
       </script>
   </body>
 </html>
