@@ -360,3 +360,17 @@ section {
   margin-bottom: 26px;
   border-radius: 5px;
 }
+
+.button-3 {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 15px;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+}

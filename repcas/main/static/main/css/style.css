@@ -473,4 +473,15 @@ p {
   margin-bottom: 26px;
   border-radius: 5px; }
 
+.button-3 {
+  background-color: #7A152E;
+  color: #fff;
+  padding: 15px;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none; }
+  .button-3:hover {
+    color: #fff;
+    text-decoration: underline; }
+
 /*# sourceMappingURL=style.css.map */

@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <header class="header-scroll">
+    <header>
       <div class="container">
         <div class="logo">
           <img src="/static/main/img/logo.png" alt="" height="70">
@@ -55,12 +55,15 @@
       <section>
         <div class="header-view" style="background-image: url('/static/main/img/cabeceras/promo.png'); background-attachment: inherit !important;">
         </div>
-        <a href="/media/{{ pdf_promotion.pdf_file }}">Descarga todas nuestras promociones</a>
         <main style="background-color: #ECECEC;">
           <div class="container">
             <div class="title-3 text-center">
               PROMOCIONES
             </div>
+            <a class="button-3" href="/media/{{ pdf_promotion.pdf_file }}">Descarga todas nuestras promociones</a>
+            <br>
+            <img src="{% static 'main/img/promo-ej.png' %}" alt="">
+            <br>
             <br>
             {% for promotion in promotions %}
               {% if forloop.counter|divisibleby:5 or forloop.first %}
