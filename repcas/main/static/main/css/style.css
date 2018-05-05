@@ -417,6 +417,14 @@ p {
   height: 197px; }
 
 .team-member-info {
+  padding: 15px; }
+
+.block-hover-function:hover .team-member-info-background {
+  display: none; }
+.block-hover-function:hover .team-member-container {
+  display: block; }
+
+.team-member-info-background {
   padding-bottom: 197px;
   background-position: center;
   background-repeat: no-repeat;
@@ -424,8 +432,16 @@ p {
   width: 100%;
   height: 0; }
 
-.team-member-photo img {
-  display: block; }
+.team-member-container {
+  display: none; }
+
+.team-member-photo {
+  position: relative;
+  height: 197px; }
+  .team-member-photo img {
+    display: block;
+    position: absolute;
+    bottom: 0; }
 
 .footer-head {
   padding: 0.75em;

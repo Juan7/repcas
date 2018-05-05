@@ -71,4 +71,16 @@
         </main>
       </section>
   </body>
+  <script type="text/javascript">
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 76) {
+      $("header").addClass("header-scroll-2");
+
+    } else {
+      $("header").removeClass("header-scroll-2");
+    }
+  });
+  </script>
 </html>

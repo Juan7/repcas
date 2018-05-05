@@ -292,7 +292,23 @@ section {
   height: 197px;
 }
 
-.team-member-info {
+.team-member-info { 
+  padding: 15px;
+}
+
+.block-hover-function {
+  &:hover {
+    .team-member-info-background {
+       display: none;
+     }
+
+     .team-member-container {
+       display: block;
+     }
+  }
+}
+
+.team-member-info-background {
   padding-bottom: 197px;
   background-position: center;
   background-repeat: no-repeat;
@@ -301,9 +317,18 @@ section {
   height: 0;
 }
 
+.team-member-container {
+  display: none;
+}
+
 .team-member-photo {
+  position: relative;
+  height: 197px;
+
   img {
     display: block;
+    position: absolute;
+    bottom: 0;
   }
 }
 

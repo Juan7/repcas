@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <header class="header-scroll">
+    <header>
       <div class="container">
         <div class="logo">
           <img src="{% static 'main/img/logo.png' %}" alt="" height="70">
@@ -90,7 +90,7 @@
                 <input type="email" name="email" required="">
               </div>
             </div>
-            
+
             <br>
             <input type="submit" name="" value="Solicitar acceso" class="btn-2">
             <a href="{% url 'login' %}"
@@ -101,4 +101,16 @@
         </div>
       </main>
   </body>
+  <script type="text/javascript">
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 76) {
+      $("header").addClass("header-scroll-2");
+
+    } else {
+      $("header").removeClass("header-scroll-2");
+    }
+  });
+  </script>
 </html>
