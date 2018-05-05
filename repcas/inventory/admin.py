@@ -32,3 +32,7 @@ class ProductPromotionAdmin(admin.ModelAdmin):
 class SpecialPriceAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(models.SpecialFinantialDiscount)
+class SpecialFinantialDiscountAdmin(admin.ModelAdmin):
+    pass
