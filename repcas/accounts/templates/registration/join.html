@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,7 +14,7 @@
     <header class="header-scroll">
       <div class="container">
         <div class="logo">
-          <img src="img/logo.png" alt="" height="70">
+          <img src="{% static 'main/img/logo.png' %}" alt="" height="70">
         </div>
         <nav>
           <ul>
@@ -82,7 +84,7 @@
             </div>
             <div class="row">
               <div class="col-6">
-                <label for="">email</label>
+                <label for="">Email</label>
               </div>
               <div class="col-6">
                 <input type="email" name="email" required="">
@@ -90,7 +92,7 @@
             </div>
             
             <br>
-            <input type="submit" name="" value="Unirse" class="btn-2">
+            <input type="submit" name="" value="Solicitar acceso" class="btn-2">
             <a href="{% url 'login' %}"
             style="color: #ededed;
             padding: 1em;
