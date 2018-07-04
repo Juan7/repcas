@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'rest_framework',
+    'django_cron',
     'django_filters',
     'accounts.apps.AccountsConfig',
     'accounting',
@@ -165,3 +166,10 @@ EMAIL_USE_TLS = True
 JOIN_EMAIL = os.environ.get('JOIN_EMAIL')
 
 AGENT_EMAIL = os.environ.get('AGENT_EMAIL')
+
+SERVER_ADDRESS = os.environ.get('SERVER_ADDRESS', 'http://190.116.51.122:8000')
+
+
+CRON_CLASSES = [
+    'main.cron.UpdateData'
+]

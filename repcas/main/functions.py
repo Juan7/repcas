@@ -1,6 +1,7 @@
 import requests
 
 from django.contrib.auth.models import User
+from django.conf import settings
     
 from accounting import models as accounting_models    
 from accounts import models as account_models    
@@ -8,7 +9,7 @@ from inventory import models as inventory_models
     
     
 def update_distribution_channel():
-    response = requests.get('http://localhost:8000/api/distribution-channel/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/distribution-channel/')
     
     for distribution_channel in response.json():
         account_models.DistributionChannel.objects.get_or_create(
@@ -18,7 +19,7 @@ def update_distribution_channel():
     
     
 def update_laboratory():
-    response = requests.get('http://localhost:8000/api/laboratories/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/laboratories/')
     
     for laboratory in response.json():
         inventory_models.Laboratory.objects.get_or_create(
@@ -32,7 +33,7 @@ def update_laboratory():
 
 
 def update_clients():
-    response = requests.get('http://localhost:8000/api/clients/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/clients/')
     
     for client in response.json():
         distribution_channel = account_models.DistributionChannel.objects.get(code=client['distributionchannelcode'])
@@ -62,7 +63,7 @@ def update_clients():
 
 
 def update_invoices():
-    response = requests.get('http://localhost:8000/api/billing-document/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/billing-document/')
     
     for billing in response.json():
         try:
@@ -85,7 +86,7 @@ def update_invoices():
     
 
 def update_products():
-    response = requests.get('http://localhost:8000/api/articles/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/articles/')
     
     for article in response.json():
         try:
@@ -105,7 +106,7 @@ def update_products():
 
 
 def update_distribution_channel_price():
-    response = requests.get('http://localhost:8000/api/distribution-channel-price/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/distribution-channel-price/')
     
     for channel_price in response.json():
         try:
@@ -126,7 +127,7 @@ def update_distribution_channel_price():
 
 
 def update_promotions():
-    response = requests.get('http://localhost:8000/api/promotions/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/promotions/')
     
     for promotion in response.json():
         try:
@@ -149,7 +150,7 @@ def update_promotions():
 
 
 def update_scales_price():
-    response = requests.get('http://localhost:8000/api/scales-price/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/scales-price/')
     
     for scale in response.json():
         try:
@@ -175,7 +176,7 @@ def update_scales_price():
 
 
 def update_special_finantial_discount():
-    response = requests.get('http://localhost:8000/api/special-finantial-discount/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/special-finantial-discount/')
     
     for finantial_discount in response.json():
         try:
@@ -198,7 +199,7 @@ def update_special_finantial_discount():
 
 
 def update_special_price():
-    response = requests.get('http://localhost:8000/api/special-price/')
+    response = requests.get(f'{settings.SERVER_ADDRESS}/api/special-price/')
     
     for special_price in response.json():
         try:
@@ -220,3 +221,16 @@ def update_special_price():
             print('Product', special_price['articlecode'])
     
     return True
+
+
+def update():
+    update_distribution_channel()
+    update_laboratory()
+    update_clients()
+    update_invoices()
+    update_products()
+    update_distribution_channel_price()
+    update_promotions()
+    update_scales_price()
+    update_special_finantial_discount()
+    update_special_price()
