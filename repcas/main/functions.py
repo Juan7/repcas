@@ -26,7 +26,7 @@ def update_laboratory():
             code=laboratory['code'], 
             defaults={
                 'name': laboratory['description'],
-                'short_name': laboratory['abbreviation'],
+                'short_name': laboratory['description'],
                 'discount': laboratory['financialdiscountpercentage']     
             })
     return True
